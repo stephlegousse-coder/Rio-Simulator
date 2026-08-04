@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 st.title("🇧🇷 Simulateur Stratégique & Foncier - Zona Sul (Rio)")
-st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographie interactive des tracés réels.")
+st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographie interactive des tracés lissés.")
 
 @st.cache_data
 def load_data():
@@ -22,26 +22,20 @@ def load_data():
         df_main['Rua'] = df_main['Rua'].astype(str).str.strip()
         df_main['Bairro'] = df_main['Bairro'].astype(str).str.strip()
         
-        # 2. Chargement de ton fichier de géométrie des rues
+        # 2. Chargement de ton fichier de géométrie mis à jour
         df_geo = pd.read_csv("Base_Data_Geo_rio.csv")
         df_geo.columns = df_geo.columns.str.strip()
         df_geo['Rua'] = df_geo['Rua'].astype(str).str.strip()
         df_geo['Bairro'] = df_geo['Bairro'].astype(str).str.strip()
         
-        # === C'EST ICI QU'IL FAUT METTRE LA NOUVELLE FONCTION DE NETTOYAGE ===
+        # Fonction simple pour décoder le JSON propre exporté depuis Colab
         def parse_path(val):
             if isinstance(val, str):
                 try:
-                    res = ast.literal_eval(val)
-                    # Si c'est imbriqué (plusieurs segments OSM), on ne garde que le plus long
-                    if isinstance(res, list) and len(res) > 0:
-                        if isinstance(res[0], list) and len(res[0]) > 0 and isinstance(res[0][0], list):
-                            res = max(res, key=len)
-                    return res
+                    return ast.literal_eval(val)
                 except:
                     return []
             return val if isinstance(val, list) else []
-        # =====================================================================
 
         if 'Path_Coordinates' in df_geo.columns:
             df_geo['path'] = df_geo['Path_Coordinates'].apply(parse_path)
@@ -51,7 +45,7 @@ def load_data():
         # 3. Fusion propre sur Rua et Bairro
         df = pd.merge(df_main, df_geo[['Rua', 'Bairro', 'path']], on=['Rua', 'Bairro'], how='left')
         
-        # Fallback intelligent si un tracé manque
+        # Fallback de sécurité si un tracé venait à manquer
         default_path = [[-43.1905, -22.9645], [-43.1780, -22.9750]]
         df['path'] = df['path'].apply(lambda x: x if isinstance(x, list) and len(x) > 0 else default_path)
         
@@ -115,8 +109,8 @@ if not df_base.empty:
         st.metric("Rues éligibles au budget", f"{len(df_faisable)} / {len(df_base)}")
         st.metric("Surface testée", f"{surface_cible} m²")
 
-    # Carte interactive PyDeck avec les vrais tracés de rues d'OSMnx (PathLayer)
-    st.subheader("🗺️ Cartographie des Rues - Tracés Réels (Zona Sul)")
+    # Carte interactive PyDeck avec les tracés lissés (PathLayer)
+    st.subheader("🗺️ Cartographie des Rues - Tracés Réels Lissés (Zona Sul)")
     
     def get_color(row):
         if not row['Faisable']:
