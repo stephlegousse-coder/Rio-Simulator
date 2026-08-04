@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 st.title("🇧🇷 Simulateur Stratégique & Foncier - Zona Sul (Rio)")
-st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographie interactive des tracés.")
+st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographie interactive des tracés réels.")
 
 @st.cache_data
 def load_data():
@@ -104,21 +104,21 @@ if not df_base.empty:
         st.metric("Rues éligibles au budget", f"{len(df_faisable)} / {len(df_base)}")
         st.metric("Surface testée", f"{surface_cible} m²")
 
-    # Carte interactive PyDeck avec des tracés de rues complets (PathLayer)
-    st.subheader("🗺️ Cartographie des Rues - Tracés Complets (Zona Sul)")
+    # Carte interactive PyDeck avec les vrais tracés de rues d'OSMnx (PathLayer)
+    st.subheader("🗺️ Cartographie des Rues - Tracés Réels (Zona Sul)")
     
     def get_color(row):
         if not row['Faisable']:
-            return [200, 50, 50, 120]  # Rouge transparent si non faisable
+            return [200, 50, 50, 140]  # Rouge transparent si non faisable
         score = row['Score_Global_Final']
         if score > 75:
-            return [0, 220, 100, 220]  # Vert vif
+            return [0, 220, 100, 230]  # Vert vif
         elif score > 50:
-            return [50, 150, 250, 220] # Bleu
+            return [50, 150, 250, 230] # Bleu
         elif score > 25:
-            return [250, 200, 0, 220]  # Jaune
+            return [250, 200, 0, 230]  # Jaune
         else:
-            return [200, 100, 50, 220] # Orange
+            return [200, 100, 50, 230] # Orange
 
     df_base['color'] = df_base.apply(get_color, axis=1)
     view_state = pdk.ViewState(latitude=-22.9711, longitude=-43.1822, zoom=13, pitch=30)
