@@ -19,10 +19,14 @@ def load_data():
         # 1. Chargement de ton fichier de données principal
         df_main = pd.read_csv("database_rio.csv")
         df_main.columns = df_main.columns.str.strip()
+        df_main['Rua'] = df_main['Rua'].astype(str).str.strip()
+        df_main['Bairro'] = df_main['Bairro'].astype(str).str.strip()
         
         # 2. Chargement de ton fichier de géométrie des rues
         df_geo = pd.read_csv("Base_Data_Geo_rio.csv")
         df_geo.columns = df_geo.columns.str.strip()
+        df_geo['Rua'] = df_geo['Rua'].astype(str).str.strip()
+        df_geo['Bairro'] = df_geo['Bairro'].astype(str).str.strip()
         
         # Conversion de la colonne texte 'Path_Coordinates' en vraie liste Python
         def parse_path(val):
@@ -38,11 +42,12 @@ def load_data():
         else:
             df_geo['path'] = [[[-43.1822, -22.9711], [-43.1830, -22.9720]]]
 
-        # 3. Fusion des deux fichiers sur le nom de la rue et du quartier
+        # 3. Fusion propre sur Rua et Bairro
         df = pd.merge(df_main, df_geo[['Rua', 'Bairro', 'path']], on=['Rua', 'Bairro'], how='left')
         
-        # Fallback si un tracé manque
-        df['path'] = df['path'].apply(lambda x: x if isinstance(x, list) and len(x) > 0 else [[-43.1822, -22.9711], [-43.1830, -22.9720]])
+        # Fallback intelligent si un tracé manque (évite le gros paquet au même endroit)
+        default_path = [[-43.1905, -22.9645], [-43.1780, -22.9750]]
+        df['path'] = df['path'].apply(lambda x: x if isinstance(x, list) and len(x) > 0 else default_path)
         
         return df
     except Exception as e:
