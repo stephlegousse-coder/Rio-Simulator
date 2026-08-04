@@ -28,14 +28,20 @@ def load_data():
         df_geo['Rua'] = df_geo['Rua'].astype(str).str.strip()
         df_geo['Bairro'] = df_geo['Bairro'].astype(str).str.strip()
         
-        # Conversion de la colonne texte 'Path_Coordinates' en vraie liste Python
+        # === C'EST ICI QU'IL FAUT METTRE LA NOUVELLE FONCTION DE NETTOYAGE ===
         def parse_path(val):
             if isinstance(val, str):
                 try:
-                    return ast.literal_eval(val)
+                    res = ast.literal_eval(val)
+                    # Si c'est imbriqué (plusieurs segments OSM), on ne garde que le plus long
+                    if isinstance(res, list) and len(res) > 0:
+                        if isinstance(res[0], list) and len(res[0]) > 0 and isinstance(res[0][0], list):
+                            res = max(res, key=len)
+                    return res
                 except:
                     return []
             return val if isinstance(val, list) else []
+        # =====================================================================
 
         if 'Path_Coordinates' in df_geo.columns:
             df_geo['path'] = df_geo['Path_Coordinates'].apply(parse_path)
@@ -45,7 +51,7 @@ def load_data():
         # 3. Fusion propre sur Rua et Bairro
         df = pd.merge(df_main, df_geo[['Rua', 'Bairro', 'path']], on=['Rua', 'Bairro'], how='left')
         
-        # Fallback intelligent si un tracé manque (évite le gros paquet au même endroit)
+        # Fallback intelligent si un tracé manque
         default_path = [[-43.1905, -22.9645], [-43.1780, -22.9750]]
         df['path'] = df['path'].apply(lambda x: x if isinstance(x, list) and len(x) > 0 else default_path)
         
