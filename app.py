@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import pydeck as pdk
+import json
+import ast
 
 st.set_page_config(
     page_title="Rio Location Simulator",
@@ -9,13 +11,29 @@ st.set_page_config(
 )
 
 st.title("🇧🇷 Simulateur Stratégique & Foncier - Zona Sul (Rio)")
-st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographie interactive.")
+st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographie interactive des tracés.")
 
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_csv("database_rio.csv")
+        # On charge le nouveau fichier CSV propre
+        df = pd.read_csv("Base_Data_Geo_rio.csv")
         df.columns = df.columns.str.strip()
+        
+        # Conversion de la colonne texte 'Path_Coordinates' en vraie liste Python exploitable par PyDeck
+        def parse_path(val):
+            if isinstance(val, str):
+                try:
+                    return ast.literal_eval(val)
+                except:
+                    return []
+            return val if isinstance(val, list) else []
+
+        if 'Path_Coordinates' in df.columns:
+            df['path'] = df['Path_Coordinates'].apply(parse_path)
+        else:
+            df['path'] = [[[-43.1822, -22.9711], [-43.1830, -22.9720]]]
+            
         return df
     except Exception as e:
         st.error(f"Erreur de chargement du CSV : {e}")
@@ -44,14 +62,14 @@ if not df_base.empty:
     st.sidebar.metric(label="Enveloppe Luvas Disponible", value=f"{orçamento_luvas_disponivel:,.0f} R$")
     surface_cible = st.sidebar.slider("Surface Cible (m²)", min_value=30, max_value=120, value=55, step=5)
 
-    # Calcul du Luvas Total et du Loyer Total en fonction de la surface
+    # Calcul des coûts totaux basés sur la surface
     df_base['Luvas_Total'] = df_base['Custo_Luvas_m2_R$'] * surface_cible
     df_base['Aluguel_Mensal_Total'] = df_base['Aluguel_Mensal_m2_R$'] * surface_cible
 
     # Test de faisabilité
     df_base['Faisable'] = df_base['Luvas_Total'] <= orçamento_luvas_disponivel
 
-    # Filtrage du Top 10 (Trié par flux piéton en priorité, puis score global)
+    # Filtrage du Top 10
     df_faisable = df_base[df_base['Faisable'] == True].copy()
     df_faisable = df_faisable.sort_values(by=['Indice_Fluxo_Pedestres', 'Score_Global_Final'], ascending=False).reset_index(drop=True)
     df_faisable.index = df_faisable.index + 1
@@ -76,42 +94,42 @@ if not df_base.empty:
         st.metric("Rues éligibles au budget", f"{len(df_faisable)} / {len(df_base)}")
         st.metric("Surface testée", f"{surface_cible} m²")
 
-    # Carte interactive (Vérifie que Latitude et Longitude sont bien dans ton CSV)
-    st.subheader("🗺️ Cartographie des Rues (Zona Sul)")
-    if 'Latitude' in df_base.columns and 'Longitude' in df_base.columns:
-        def get_color(row):
-            if not row['Faisable']:
-                return [200, 50, 50, 80]
-            score = row['Score_Global_Final']
-            if score > 75:
-                return [0, 220, 100, 200]
-            elif score > 50:
-                return [50, 150, 250, 200]
-            elif score > 25:
-                return [250, 200, 0, 200]
-            else:
-                return [200, 100, 50, 200]
+    # Carte interactive PyDeck avec des tracés de rues complets (PathLayer)
+    st.subheader("🗺️ Cartographie des Rues - Tracés Complets (Zona Sul)")
+    
+    def get_color(row):
+        if not row['Faisable']:
+            return [200, 50, 50, 120]  # Rouge transparent si non faisable
+        score = row['Score_Global_Final']
+        if score > 75:
+            return [0, 220, 100, 220]  # Vert vif
+        elif score > 50:
+            return [50, 150, 250, 220] # Bleu
+        elif score > 25:
+            return [250, 200, 0, 220]  # Jaune
+        else:
+            return [200, 100, 50, 220] # Orange
 
-        df_base['color'] = df_base.apply(get_color, axis=1)
-        view_state = pdk.ViewState(latitude=-22.9711, longitude=-43.1822, zoom=12, pitch=30)
+    df_base['color'] = df_base.apply(get_color, axis=1)
+    view_state = pdk.ViewState(latitude=-22.9711, longitude=-43.1822, zoom=13, pitch=30)
 
-        layer = pdk.Layer(
-            "ScatterplotLayer",
-            data=df_base,
-            get_position=["Longitude", "Latitude"],
-            get_color="color",
-            get_radius=120,
-            pickable=True,
-            auto_highlight=True,
-        )
+    # Utilisation du PathLayer pour afficher les rues en entier
+    layer = pdk.Layer(
+        "PathLayer",
+        data=df_base,
+        get_path="path",
+        get_color="color",
+        width_scale=20,
+        width_min_pixels=4,
+        pickable=True,
+        auto_highlight=True,
+    )
 
-        r = pdk.Deck(
-            layers=[layer], 
-            initial_view_state=view_state, 
-            tooltip={
-                "text": "Quartier: {Bairro}\nRue: {Rua}\nFlux Piétons: {Indice_Fluxo_Pedestres}\nScore Global: {Score_Global_Final}\nLuvas Total: {Luvas_Total} R$\nLoyer: {Aluguel_Mensal_Total} R$"
-            }
-        )
-        st.pydeck_chart(r)
-    else:
-        st.error("⚠️ Les colonnes 'Latitude' et 'Longitude' sont absentes de ton fichier CSV pour afficher la carte.")
+    r = pdk.Deck(
+        layers=[layer], 
+        initial_view_state=view_state, 
+        tooltip={
+            "text": "Quartier: {Bairro}\nRue: {Rua}\nFlux Piétons: {Indice_Fluxo_Pedestres}\nScore Global: {Score_Global_Final}\nLuvas Total: {Luvas_Total:,.0f} R$\nLoyer: {Aluguel_Mensal_Total:,.0f} R$"
+        }
+    )
+    st.pydeck_chart(r)
