@@ -16,12 +16,11 @@ st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographi
 @st.cache_data
 def load_data():
     try:
-        # 1. On charge ton fichier de données complet d'origine (assure-toi qu'il est bien sur GitHub)
-        # Remplace "input_financier.csv" par le nom exact de ton fichier de données principal si besoin
-        df_main = pd.read_csv("input_financier.csv") 
+        # 1. Chargement de ton fichier de données principal
+        df_main = pd.read_csv("database_rio.csv")
         df_main.columns = df_main.columns.str.strip()
         
-        # 2. On charge ton nouveau fichier de géométrie des rues
+        # 2. Chargement de ton fichier de géométrie des rues
         df_geo = pd.read_csv("Base_Data_Geo_rio.csv")
         df_geo.columns = df_geo.columns.str.strip()
         
@@ -39,7 +38,7 @@ def load_data():
         else:
             df_geo['path'] = [[[-43.1822, -22.9711], [-43.1830, -22.9720]]]
 
-        # 3. On fusionne les deux fichiers sur le nom de la rue et du quartier
+        # 3. Fusion des deux fichiers sur le nom de la rue et du quartier
         df = pd.merge(df_main, df_geo[['Rua', 'Bairro', 'path']], on=['Rua', 'Bairro'], how='left')
         
         # Fallback si un tracé manque
