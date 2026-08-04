@@ -16,11 +16,16 @@ st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographi
 @st.cache_data
 def load_data():
     try:
-        # On charge le nouveau fichier CSV propre
-        df = pd.read_csv("Base_Data_Geo_rio.csv")
-        df.columns = df.columns.str.strip()
+        # 1. On charge ton fichier de données complet d'origine (assure-toi qu'il est bien sur GitHub)
+        # Remplace "input_financier.csv" par le nom exact de ton fichier de données principal si besoin
+        df_main = pd.read_csv("input_financier.csv") 
+        df_main.columns = df_main.columns.str.strip()
         
-        # Conversion de la colonne texte 'Path_Coordinates' en vraie liste Python exploitable par PyDeck
+        # 2. On charge ton nouveau fichier de géométrie des rues
+        df_geo = pd.read_csv("Base_Data_Geo_rio.csv")
+        df_geo.columns = df_geo.columns.str.strip()
+        
+        # Conversion de la colonne texte 'Path_Coordinates' en vraie liste Python
         def parse_path(val):
             if isinstance(val, str):
                 try:
@@ -29,14 +34,20 @@ def load_data():
                     return []
             return val if isinstance(val, list) else []
 
-        if 'Path_Coordinates' in df.columns:
-            df['path'] = df['Path_Coordinates'].apply(parse_path)
+        if 'Path_Coordinates' in df_geo.columns:
+            df_geo['path'] = df_geo['Path_Coordinates'].apply(parse_path)
         else:
-            df['path'] = [[[-43.1822, -22.9711], [-43.1830, -22.9720]]]
-            
+            df_geo['path'] = [[[-43.1822, -22.9711], [-43.1830, -22.9720]]]
+
+        # 3. On fusionne les deux fichiers sur le nom de la rue et du quartier
+        df = pd.merge(df_main, df_geo[['Rua', 'Bairro', 'path']], on=['Rua', 'Bairro'], how='left')
+        
+        # Fallback si un tracé manque
+        df['path'] = df['path'].apply(lambda x: x if isinstance(x, list) and len(x) > 0 else [[-43.1822, -22.9711], [-43.1830, -22.9720]])
+        
         return df
     except Exception as e:
-        st.error(f"Erreur de chargement du CSV : {e}")
+        st.error(f"Erreur de chargement des fichiers : {e}")
         return pd.DataFrame()
 
 df_base = load_data()
@@ -113,7 +124,6 @@ if not df_base.empty:
     df_base['color'] = df_base.apply(get_color, axis=1)
     view_state = pdk.ViewState(latitude=-22.9711, longitude=-43.1822, zoom=13, pitch=30)
 
-    # Utilisation du PathLayer pour afficher les rues en entier
     layer = pdk.Layer(
         "PathLayer",
         data=df_base,
