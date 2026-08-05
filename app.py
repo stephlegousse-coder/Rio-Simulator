@@ -109,33 +109,49 @@ if not df_base.empty:
         st.metric("Rues éligibles au budget", f"{len(df_faisable)} / {len(df_base)}")
         st.metric("Surface testée", f"{surface_cible} m²")
 
-# Carte interactive PyDeck avec dégradé Rouge -> Vert
+# ==========================================
+# CARTE INTERACTIVE
+# ==========================================
 
 st.subheader("🗺️ Cartographie des Rues - Tracés Réels Lissés (Zona Sul)")
+
+# Calcul automatique des bornes du score
+score_min = float(df_base["Score_Global_Final"].min())
+score_max = float(df_base["Score_Global_Final"].max())
 
 def get_color(row):
 
     # Hors budget = gris foncé
-    if not row['Faisable']:
-        return [70, 70, 70, 180]
+    if not row["Faisable"]:
+        return [90, 90, 90, 180]
 
-    score = float(row['Score_Global_Final'])
+    score = float(row["Score_Global_Final"])
 
-    # Bornage de sécurité
-    score = max(0, min(100, score))
+    # Sécurité
+    score = max(score_min, min(score_max, score))
 
-    # Dégradé linéaire Rouge -> Vert
-    red = int(255 * (1 - score / 100))
-    green = int(255 * (score / 100))
+    # Normalisation du score entre 0 et 1
+    ratio = (score - score_min) / (score_max - score_min)
 
-    return [red, green, 0, 230]
+    # Rouge -> Jaune -> Vert façon Excel
+    if ratio <= 0.5:
 
-df_base['color'] = df_base.apply(get_color, axis=1)
+        red = 255
+        green = int(255 * (ratio * 2))
+
+    else:
+
+        red = int(255 * (1 - ((ratio - 0.5) * 2)))
+        green = 255
+
+    return [red, green, 0, 240]
+
+df_base["color"] = df_base.apply(get_color, axis=1)
 
 view_state = pdk.ViewState(
     latitude=-22.9711,
     longitude=-43.1822,
-    zoom=13,
+    zoom=12.8,
     pitch=0
 )
 
@@ -144,24 +160,33 @@ layer = pdk.Layer(
     data=df_base,
     get_path="path",
     get_color="color",
-    width_scale=35,
-    width_min_pixels=5,
+    width_scale=40,
+    width_min_pixels=6,
+    rounded=True,
     pickable=True,
-    auto_highlight=True,
+    auto_highlight=True
 )
 
 r = pdk.Deck(
-    map_style="road",
+    map_style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
     layers=[layer],
     initial_view_state=view_state,
     tooltip={
         "html": """
-        <b>{Rua}</b><br/>
-        <b>Quartier :</b> {Bairro}<br/>
-        <b>Flux Piétons :</b> {Indice_Fluxo_Pedestres}<br/>
-        <b>Score Global :</b> {Score_Global_Final}<br/>
-        <b>Luvas :</b> R$ {Luvas_Total}<br/>
-        <b>Loyer :</b> R$ {Aluguel_Mensal_Total}
+        <div style="
+            background-color:white;
+            padding:10px;
+            border-radius:8px;
+            font-size:14px;
+        ">
+            <b>{Rua}</b><br><br>
+
+            <b>Quartier</b> : {Bairro}<br>
+            <b>Flux Piétons</b> : {Indice_Fluxo_Pedestres}<br>
+            <b>Score Global</b> : {Score_Global_Final}<br>
+            <b>Luvas</b> : R$ {Luvas_Total}<br>
+            <b>Loyer</b> : R$ {Aluguel_Mensal_Total}
+        </div>
         """
     }
 )
