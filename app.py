@@ -16,19 +16,16 @@ st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographi
 @st.cache_data
 def load_data():
     try:
-        # 1. Chargement de ton fichier de données principal
         df_main = pd.read_csv("database_rio.csv")
         df_main.columns = df_main.columns.str.strip()
         df_main['Rua'] = df_main['Rua'].astype(str).str.strip()
         df_main['Bairro'] = df_main['Bairro'].astype(str).str.strip()
         
-        # 2. Chargement de ton fichier de géométrie mis à jour
         df_geo = pd.read_csv("Base_Data_Geo_rio.csv")
         df_geo.columns = df_geo.columns.str.strip()
         df_geo['Rua'] = df_geo['Rua'].astype(str).str.strip()
         df_geo['Bairro'] = df_geo['Bairro'].astype(str).str.strip()
         
-        # Fonction simple pour décoder le JSON propre exporté depuis Colab
         def parse_path(val):
             if isinstance(val, str):
                 try:
@@ -42,10 +39,8 @@ def load_data():
         else:
             df_geo['path'] = [[[-43.1822, -22.9711], [-43.1830, -22.9720]]]
 
-        # 3. Fusion propre sur Rua et Bairro
         df = pd.merge(df_main, df_geo[['Rua', 'Bairro', 'path']], on=['Rua', 'Bairro'], how='left')
         
-        # Fallback de sécurité si un tracé venait à manquer
         default_path = [[-43.1905, -22.9645], [-43.1780, -22.9750]]
         df['path'] = df['path'].apply(lambda x: x if isinstance(x, list) and len(x) > 0 else default_path)
         
@@ -58,24 +53,24 @@ df_base = load_data()
 
 if not df_base.empty:
     st.sidebar.header("🛠️ Paramètres Financiers")
-    user_apport = st.sidebar.number_input("Apport Total Disponible (R$)", value=700000, step=10000)
+    user_apport = st.sidebar.number_input("Apport Total Disponible (R$)", value=700000, step=10000, key="input_apport")
 
     st.sidebar.subheader("Postes Fixes (One-Shot)")
-    c_travaux = st.sidebar.numberinput("Custo Obras Fixo (R$)", value=170000, step=5000)
-    c_equip = st.sidebar.numberinput("Custo Equipamentos (R$)", value=190763, step=5000)
-    c_mobilier = st.sidebar.numberinput("Custo Mobiliário (R$)", value=20832, step=1000)
-    c_marketing = st.sidebar.numberinput("Custo Marketing (R$)", value=18500, step=1000)
-    c_admin = st.sidebar.numberinput("Custo Administrativo (R$)", value=18000, step=1000)
-    c_secu = st.sidebar.numberinput("Custo Segurança (R$)", value=17000, step=1000)
-    c_ti = st.sidebar.numberinput("Custo TI (R$)", value=5000, step=500)
-    c_reserves = st.sidebar.numberinput("Reserva de Emergência (R$)", value=93000, step=5000)
+    c_travaux = st.sidebar.numberinput("Custo Obras Fixo (R$)", value=170000, step=5000, key="input_travaux")
+    c_equip = st.sidebar.numberinput("Custo Equipamentos (R$)", value=190763, step=5000, key="input_equip")
+    c_mobilier = st.sidebar.numberinput("Custo Mobiliário (R$)", value=20832, step=1000, key="input_mobilier")
+    c_marketing = st.sidebar.numberinput("Custo Marketing (R$)", value=18500, step=1000, key="input_marketing")
+    c_admin = st.sidebar.numberinput("Custo Administrativo (R$)", value=18000, step=1000, key="input_admin")
+    c_secu = st.sidebar.numberinput("Custo Segurança (R$)", value=17000, step=1000, key="input_secu")
+    c_ti = st.sidebar.numberinput("Custo TI (R$)", value=5000, step=500, key="input_ti")
+    c_reserves = st.sidebar.numberinput("Reserva de Emergência (R$)", value=93000, step=5000, key="input_reserves")
 
     total_fixes = c_travaux + c_equip + c_mobilier + c_marketing + c_admin + c_secu + c_ti + c_reserves
     orçamento_luvas_disponivel = user_apport - total_fixes
 
     st.sidebar.markdown("---")
     st.sidebar.metric(label="Enveloppe Luvas Disponible", value=f"{orçamento_luvas_disponivel:,.0f} R$")
-    surface_cible = st.sidebar.slider("Surface Cible (m²)", min_value=30, max_value=120, value=55, step=5)
+    surface_cible = st.sidebar.slider("Surface Cible (m²)", min_value=30, max_value=120, value=55, step=5, key="slider_surface")
 
     # Calcul des coûts totaux basés sur la surface
     df_base['Luvas_Total'] = df_base['Custo_Luvas_m2_R$'] * surface_cible
@@ -113,9 +108,8 @@ if not df_base.empty:
     st.subheader("🗺️ Cartographie des Rues - Tracés Réels Lissés (Zona Sul)")
     
     def get_color(row):
-        # Hors budget -> Gris foncé / Noir discret
         if not row['Faisable']:
-            return [50, 50, 50, 160] 
+            return [50, 50, 50, 160] # Hors budget -> Gris foncé discret
         
         score = row['Score_Global_Final']
         min_s = df_base['Score_Global_Final'].min()
@@ -126,7 +120,7 @@ if not df_base.empty:
         else:
             t = max(0.0, min(1.0, (score - min_s) / (max_s - min_s)))
         
-        # Dégradé graduel : Rouge (240, 80, 80) -> Jaune (245, 220, 90) -> Vert (40, 180, 90)
+        # Dégradé progressif : Rouge -> Jaune -> Vert
         if t < 0.5:
             factor = t * 2
             r = int(240 + factor * (245 - 240))
