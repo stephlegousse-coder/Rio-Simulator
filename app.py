@@ -28,14 +28,20 @@ def load_data():
         df_geo['Rua'] = df_geo['Rua'].astype(str).str.strip()
         df_geo['Bairro'] = df_geo['Bairro'].astype(str).str.strip()
         
-        # Fonction simple pour décoder le JSON propre exporté depuis Colab
+        # Fonction robuste pour décoder le JSON ou les listes sous forme de texte
         def parse_path(val):
+            if isinstance(val, list):
+                return val
             if isinstance(val, str):
+                val = val.strip()
                 try:
                     return ast.literal_eval(val)
                 except:
-                    return []
-            return val if isinstance(val, list) else []
+                    try:
+                        return json.loads(val)
+                    except:
+                        return []
+            return []
 
         if 'Path_Coordinates' in df_geo.columns:
             df_geo['path'] = df_geo['Path_Coordinates'].apply(parse_path)
