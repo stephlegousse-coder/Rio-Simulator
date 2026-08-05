@@ -132,36 +132,38 @@ def get_color(row):
 
     # Hors budget = gris
     if not row["Faisable"]:
-        return [120, 120, 120, 180]
+        return [110, 110, 110, 180]
 
     score = float(row["Score_Global_Final"])
 
     ratio = (score - score_min) / (score_max - score_min)
 
-    # Palette Excel douce
-    red_color = [244, 178, 178]
-    yellow_color = [255, 235, 156]
-    green_color = [182, 215, 168]
+    # Rouge -> Jaune -> Vert
+    red_color = [234, 102, 102]
+    yellow_color = [255, 217, 0]
+    green_color = [92, 184, 92]
 
     if ratio <= 0.5:
 
         t = ratio * 2
 
-        return interpolate(
-            red_color,
-            yellow_color,
-            t
-        )
+        return [
+            int(red_color[0] + (yellow_color[0] - red_color[0]) * t),
+            int(red_color[1] + (yellow_color[1] - red_color[1]) * t),
+            int(red_color[2] + (yellow_color[2] - red_color[2]) * t),
+            220
+        ]
 
     else:
 
         t = (ratio - 0.5) * 2
 
-        return interpolate(
-            yellow_color,
-            green_color,
-            t
-        )
+        return [
+            int(yellow_color[0] + (green_color[0] - yellow_color[0]) * t),
+            int(yellow_color[1] + (green_color[1] - yellow_color[1]) * t),
+            int(yellow_color[2] + (green_color[2] - yellow_color[2]) * t),
+            220
+        ]
 
 
 df_base["color"] = df_base.apply(get_color, axis=1)
