@@ -1,0 +1,458 @@
+Bairro,Rua,Qtd_Comércios_existentes,Indice_Fluxo_Pedestres,Renda_média_Familiar_R$,Coef_Concentration_Conc,Potencial_Delivery_Score,Score_Global_Final,Custo_Luvas_m2_R$,Aluguel_Mensal_m2_R$,Custo_Total_Ano1_R$,Indice_Rentabilidade_Imobi
+Catete,Rua do Catete,206,99,6900,0.021,89,80,1800,110,171600,94
+Botafogo,Rua Voluntários da Pátria,203,99,9800,0.0162,71,80,3400,210,325600,68
+Laranjeiras,Rua das Laranjeiras,198,99,8500,0.0066,82,82,2200,150,220000,86
+Ipanema,Rua Visconde de Pirajá,154,94,14800,0.0924,94,78,5700,360,551100,30
+Copacabana,Rua Barata Ribeiro,152,90,8200,0.0912,99,71,3250,200,310750,70
+Copacabana,Avenida Nossa Senhora de Copacabana,150,97,8200,0.0006,90,82,3350,210,322850,68
+Botafogo,Praia de Botafogo,110,94,9800,0.066,98,75,3300,200,313500,70
+Copacabana,Avenida Atlântica,94,79,8200,0.0564,99,68,3100,200,302500,72
+Botafogo,Rua Marquês de Abrantes,89,87,9800,0.0534,90,71,3200,200,308000,71
+Flamengo,Rua Marquês de Abrantes,89,87,9200,0.0534,90,71,2050,140,205150,88
+Humaitá,Rua Humaitá,79,90,9100,0.0474,72,68,3250,200,310750,70
+Flamengo,Rua Senador Vergueiro,72,81,9200,0.0294,96,71,2000,140,202400,89
+Catete,Largo do Machado,69,96,6900,0.0414,84,71,4150,250,393250,57
+Copacabana,Avenida Prado Júnior,69,82,8200,0.0414,99,70,3150,200,305250,71
+Copacabana,Rua Siqueira Campos,65,96,8200,0.039,99,76,3350,200,316250,69
+Leblon,Avenida Ataulfo de Paiva,65,88,16500,0.039,90,79,5550,360,542850,31
+Jardim Botânico,Rua Pacheco Leão,58,89,12500,0.0348,46,67,3250,200,310750,70
+Jardim Botânico,Rua Jardim Botânico,56,83,12500,0.0036,45,67,3150,200,305250,71
+Ipanema,Rua Teixeira de Melo,54,80,14800,0.0324,91,74,5400,350,528000,34
+Laranjeiras,Ciclofaixa Rua das Laranjeiras,54,88,8500,0.0324,76,68,2100,140,207900,88
+Botafogo,Rua São Clemente,51,86,9800,0.0006,70,70,3200,200,308000,71
+Ipanema,Avenida Vieira Souto,50,77,14800,0.03,91,73,5350,350,525250,34
+Ipanema,Rua Prudente de Morais,49,80,14800,0.0294,91,74,5400,350,528000,34
+Catete,Rua Dois de Dezembro,49,76,6900,0.018,89,65,1600,110,160600,96
+Botafogo,Rua Senador Vergueiro,49,78,9800,0.0294,96,69,3100,200,302500,72
+Laranjeiras,Rua General Glicério,48,79,8500,0.0288,76,64,2000,140,202400,89
+Botafogo,Rua Sorocaba,45,79,9800,0.027,96,69,3100,200,302500,72
+Botafogo,Rua Professor Álvaro Rodrigues,43,81,9800,0.0258,96,70,3150,200,305250,71
+Botafogo,Rua Nelson Mandela,42,96,9800,0.0252,96,77,4150,250,393250,57
+Catete,Rua Pedro Américo,41,69,6900,0.0246,83,59,1550,110,157850,96
+Ipanema,Rua Vinícius de Moraes,41,71,14800,0.0246,91,70,5200,340,510400,37
+Copacabana,Avenida Princesa Isabel,38,76,8200,0.0228,99,67,3050,190,293150,73
+Flamengo,Rua Machado de Assis,37,78,9200,0.0126,83,66,2000,140,202400,89
+Flamengo,Rua do Catete,35,87,9200,0.021,89,71,2050,140,205150,88
+Catete,Rua Bento Lisboa,34,75,6900,0.0204,83,61,1600,110,160600,96
+Urca,Avenida Pasteur,34,88,11800,0.0156,96,76,1700,110,166100,95
+Flamengo,Praia do Flamengo,33,86,9200,0.0198,89,70,2050,140,205150,88
+Botafogo,Rua da Passagem,33,78,9800,0.0198,96,68,3100,200,302500,72
+Copacabana,Rua Domingos Ferreira,33,68,8200,0.0198,99,63,2950,190,287650,74
+Copacabana,Rua Belfort Roxo,32,77,8200,0.0192,99,67,3100,190,295900,73
+Copacabana,Rua Figueiredo de Magalhães,32,75,8200,0.0192,99,66,3050,190,293150,73
+Ipanema,Rua Maria Quitéria,31,69,14800,0.0186,91,68,5200,340,510400,37
+Leblon,Avenida Bartolomeu Mitre,31,79,16500,0.0012,45,67,5400,350,528000,34
+Copacabana,Praça Demétrio Ribeiro,31,71,8200,0.0186,99,64,3000,190,290400,74
+Botafogo,Rua Real Grandeza,31,75,9800,0.0186,96,67,3050,190,293150,73
+Leblon,Rua Dias Ferreira,31,67,16500,0.0186,89,69,5150,340,507650,37
+Botafogo,Rua Mena Barreto,30,76,9800,0.018,96,67,3050,190,293150,73
+Flamengo,Rua Dois de Dezembro,30,73,9200,0.018,89,64,1950,140,199650,89
+Flamengo,Rua Silveira Martins,29,76,9200,0.0168,83,64,1950,140,199650,89
+Laranjeiras,Rua Paissandu,28,75,8500,0.0126,89,64,1950,140,199650,89
+Catete,Rua Silveira Martins,28,76,6900,0.0168,83,62,1600,110,160600,96
+Botafogo,Rua General Polidoro,27,76,9800,0.0162,96,67,3050,190,293150,73
+Ipanema,Rua Farme de Amoedo,27,69,14800,0.0162,91,68,5200,340,510400,37
+Gávea,Praça Santos Dumont,27,72,13200,0.0162,46,59,1600,110,160600,96
+Humaitá,Rua Voluntários da Pátria,27,86,9100,0.0162,71,66,3200,200,308000,71
+Botafogo,Avenida Pasteur,26,86,9800,0.0156,96,72,3200,200,308000,71
+Copacabana,Rua Constante Ramos,25,72,8200,0.015,99,64,3000,190,290400,74
+Laranjeiras,Rua São Salvador,25,70,8500,0.006,88,62,1900,140,196900,89
+Copacabana,Rua Ministro Viveiros de Castro,25,70,8200,0.015,99,63,3000,190,290400,74
+Catete,Rua Corrêa Dutra,25,77,6900,0.0084,88,64,1600,110,160600,96
+Botafogo,Rua Visconde de Ouro Preto,24,69,9800,0.0144,96,64,2950,190,287650,74
+Ipanema,Rua Barão da Torre,24,73,14800,0.0144,91,70,5250,340,513150,36
+Botafogo,Rua Arnaldo Quintela,24,96,9800,0.0144,96,76,3350,200,316250,69
+Copacabana,Rua Ronald de Carvalho,24,73,8200,0.0144,99,65,3000,190,290400,74
+Copacabana,Rua Tonelero,23,74,8200,0.0138,99,65,3050,190,293150,73
+Botafogo,Rua Conde de Irajá,23,74,9800,0.0018,70,62,3050,190,293150,73
+Botafogo,Rua Fernandes Guimarães,23,62,9800,0.0138,96,61,2850,190,282150,75
+Botafogo,Rua Paulo Barreto,23,71,9800,0.0138,96,65,3000,190,290400,74
+Copacabana,Rua Hilário de Gouveia,23,70,8200,0.0138,99,63,3000,190,290400,74
+Flamengo,Rua Buarque de Macedo,22,71,9200,0.0132,83,61,1900,140,196900,89
+Catete,Rua Buarque de Macedo,22,71,6900,0.0132,83,59,1550,110,157850,96
+Humaitá,Rua Capitão Salomão,22,67,9100,0.0132,71,57,2950,190,287650,74
+Leblon,Rua Humberto de Campos,21,71,16500,0.0126,89,70,5200,340,510400,37
+Ipanema,Rua Garcia d'Ávila,21,65,14800,0.0126,91,66,5100,330,498300,39
+Copacabana,Rua Rodolfo Dantas,21,68,8200,0.0126,99,62,2950,190,287650,74
+Botafogo,Rua São João Batista,21,71,9800,0.0126,96,64,3000,190,290400,74
+Gávea,Rua Marquês de São Vicente,21,79,13200,0.0126,46,62,1650,110,163350,95
+Flamengo,Rua Paissandu,21,73,9200,0.0126,89,63,1950,140,199650,89
+Catete,Rua Machado de Assis,21,74,6900,0.0126,83,60,1600,110,160600,96
+Copacabana,Rua Santa Clara,20,73,8200,0.012,98,64,3000,190,290400,74
+Botafogo,Lagoa/Botafogo,20,78,9800,0.0114,70,62,3100,200,302500,72
+Jardim Botânico,Pacheco Leão/General Garzon,19,73,12500,0.0114,45,58,3000,190,290400,74
+Humaitá,Lagoa/Botafogo,19,77,9100,0.0114,70,61,3100,190,295900,73
+Copacabana,Rua Bolívar,19,66,8200,0.0114,98,61,2900,190,284900,75
+Copacabana,Rua República do Peru,19,68,8200,0.0114,98,62,2950,190,287650,74
+Leblon,Rua General Venâncio Flores,18,60,16500,0.0108,88,64,5000,330,492800,40
+Botafogo,Rua General Severiano,18,71,9800,0.0084,35,52,3000,190,290400,74
+Flamengo,Rua Arno Konder,18,66,9200,0.0108,88,60,1850,140,194150,90
+Humaitá,Rua Visconde de Caravelas,18,68,9100,0.0102,95,62,2950,190,287650,74
+Botafogo,Rua Bambina,18,72,9800,0.0108,95,64,3000,190,290400,74
+Catete,Rua Andrade Pertence,18,64,6900,0.0108,82,55,1500,100,148500,98
+Botafogo,Rua Farani,17,73,9800,0.0102,95,65,3000,190,290400,74
+Copacabana,Rua Xavier da Silveira,17,67,8200,0.0102,98,61,2950,190,287650,74
+Flamengo,Travessa dos Tamoios,17,70,9200,0.0102,88,61,1900,140,196900,89
+Botafogo,Rua Visconde de Caravelas,17,67,9800,0.0102,95,62,2950,190,287650,74
+Copacabana,Rodolfo Dantas,17,69,8200,0.0102,98,62,2950,190,287650,74
+Leblon,Avenida Delfim Moreira,17,67,16500,0.0102,88,67,5150,340,507650,37
+Copacabana,Rua Raul Pompéia,16,72,8200,0.003,90,62,3000,190,290400,74
+Copacabana,Rua Miguel Lemos,16,67,8200,0.0096,98,61,2950,190,287650,74
+Ipanema,Rua Jangadeiros,16,74,14800,0.0096,90,69,5300,340,515900,36
+Catete,Rua Artur Bernardes,16,63,6900,0.0096,82,54,1500,100,148500,98
+Copacabana,Rua Duvivier,16,67,8200,0.0096,98,61,2950,190,287650,74
+Leblon,Avenida General San Martin,16,70,16500,0.0096,88,69,5200,340,510400,37
+Laranjeiras,Rua Senador Corrêa,16,68,8500,0.0096,75,57,1900,140,196900,89
+Ipanema,Avenida Henrique Dumont,15,66,14800,0.009,90,65,5100,340,504900,38
+Copacabana,Rua Aires Saldanha,15,63,8200,0.009,98,59,2900,190,284900,75
+Catete,Rua Antônio Mendes Campos,15,68,6900,0.009,82,56,1550,110,157850,96
+Copacabana,Praça Cardeal Arcoverde,15,72,8200,0.009,98,63,3000,190,290400,74
+Laranjeiras,Rua General Cristóvão Barcelos,15,65,8500,0.009,75,55,1850,140,194150,90
+Botafogo,Rua Dezenove de Fevereiro,15,70,9800,0.009,95,63,3000,190,290400,74
+Copacabana,Rua Francisco Sá,14,66,8200,0.0036,90,59,2900,190,284900,75
+Ipanema,Rua Francisco Otaviano,14,68,14800,0.0084,98,68,5150,340,507650,37
+Laranjeiras,Rua Ipiranga,14,62,8500,0.0084,75,54,1800,130,184800,92
+Ipanema,Rua Aníbal de Mendonça,14,62,14800,0.0084,90,63,5050,330,495550,39
+Flamengo,Rua Visconde do Cruzeiro,14,66,9200,0.0084,88,59,1850,140,194150,90
+Flamengo,Rua Fernando Osório,14,66,9200,0.0084,88,59,1850,140,194150,90
+Urca,Rua General Severiano,14,69,11800,0.0084,35,52,1550,110,157850,96
+Flamengo,Rua Corrêa Dutra,14,73,9200,0.0084,88,62,1950,140,199650,89
+Copacabana,Rua Dias da Rocha,14,58,8200,0.0084,98,56,2800,180,272800,77
+Botafogo,Rua das Palmeiras,14,72,9800,0.0084,95,64,3000,190,290400,74
+Copacabana,Rua Francisco Otaviano,14,68,8200,0.0084,98,61,2950,190,287650,74
+Copacabana,Rua Barão de Ipanema,13,65,8200,0.0078,98,59,2900,190,284900,75
+Copacabana,Rua Paula Freitas,13,58,8200,0.0078,98,56,2800,180,272800,77
+Leblon,Rua Rainha Guilhermina,13,58,16500,0.0078,88,63,4950,330,490050,40
+Flamengo,Rua Marquês de Paraná,13,68,9200,0.0078,88,60,1900,140,196900,89
+Ipanema,Rua Gomes Carneiro,13,65,14800,0.0042,98,67,5100,330,498300,39
+Flamengo,Rua Clarice Índio do Brasil,13,58,9200,0.0078,95,57,1800,130,184800,92
+Ipanema,Rua Joana Angélica,13,65,14800,0.0078,90,65,5100,330,498300,39
+Laranjeiras,Rua Alice,13,62,8500,0.0078,75,54,1800,130,184800,92
+Botafogo,Rua Clarice Índio do Brasil,13,58,9800,0.0078,95,57,2800,180,272800,77
+Laranjeiras,Rua Sebastião de Lacerda,12,63,8500,0.0072,75,54,1850,140,194150,90
+Jardim Botânico,Rua Lopes Quintas,12,67,12500,0.0072,45,54,2950,190,287650,74
+Laranjeiras,Rua Mário Portela,12,58,8500,0.0072,75,52,1800,130,184800,92
+Catete,Via Martins da Mota,12,58,6900,0.0072,82,51,1450,100,145750,98
+Laranjeiras,Rua Gago Coutinho,11,63,8500,0.0048,82,55,1850,140,194150,90
+Ipanema,Avenida Epitácio Pessoa,11,63,14800,0.0066,90,63,5050,330,495550,39
+Flamengo,Praça José de Alencar,11,71,9200,0.0048,82,60,1900,140,196900,89
+Laranjeiras,Praça David Ben Gurion,11,63,8500,0.0066,75,54,1850,140,194150,90
+Copacabana,Rua Raimundo Corrêa,11,63,8200,0.0066,98,58,2900,190,284900,75
+Catete,Rua das Laranjeiras,11,80,6900,0.0066,82,61,1650,110,163350,95
+Copacabana,Rua Almirante Gonçalves,11,66,8200,0.0066,98,59,2900,190,284900,75
+Humaitá,Rua Marques,10,78,9100,0.0042,95,65,3100,200,302500,72
+Flamengo,Rua São Salvador,10,64,9200,0.006,88,57,1850,140,194150,90
+Botafogo,Rua Pinheiro Guimarães,10,62,9800,0.006,95,58,2850,190,282150,75
+Gávea,Avenida Rodrigo Otávio,10,68,13200,0.0024,88,63,1550,110,157850,96
+São Conrado,Avenida Prefeito Mendes de Morais,10,68,11500,0.006,30,50,1550,110,157850,96
+Gávea,Rua dos Oitis,10,56,13200,0.006,45,49,1450,100,145750,98
+Botafogo,Rua Muniz Barreto,10,72,9800,0.006,95,63,3000,190,290400,74
+Botafogo,Rua Guilhermina Guinle,10,68,9800,0.006,95,61,2950,190,287650,74
+Jardim Botânico,Rua Visconde de Carandaí,10,64,12500,0.006,45,52,2900,190,284900,75
+Urca,Avenida Portugal,10,70,11800,0.006,35,52,1550,110,157850,96
+Urca,Avenida João Luís Alves,10,70,11800,0.006,35,52,1550,110,157850,96
+Gávea,Avenida Padre Leonel Franca,10,68,13200,0.006,45,55,1550,110,157850,96
+Leblon,Rua Aristides Espínola,9,59,16500,0.0054,88,62,5000,330,492800,40
+Jardim Botânico,Rua Von Martius,9,62,12500,0.0054,45,51,2850,190,282150,75
+Laranjeiras,Rua Ribeiro de Almeida,9,66,8500,0.0054,75,54,1850,140,194150,90
+Copacabana,Rua Pompeu Loureiro,9,69,8200,0.0054,98,60,2950,190,287650,74
+Humaitá,Rua Desembargador Burle,9,62,9100,0.0054,70,52,2850,190,282150,75
+Copacabana,Avenida Rainha Elizabeth,9,68,8200,0.0042,90,58,2950,190,287650,74
+Leblon,Rua Carlos Gois,9,62,16500,0.0054,88,64,5050,330,495550,39
+Flamengo,Rua Ministro Tavares de Lira,9,64,9200,0.0054,82,56,1850,140,194150,90
+São Conrado,Estrada da Gávea,9,72,11500,0.0012,45,55,1600,110,160600,96
+Copacabana,Duvivier,9,63,8200,0.0054,98,57,2900,190,284900,75
+Catete,Rua Ministro Tavares de Lira,9,64,6900,0.0054,82,53,1500,100,148500,98
+Humaitá,Largo dos Leões,9,68,9100,0.0054,70,55,2950,190,287650,74
+Copacabana,Rua Joaquim Nabuco,9,59,8200,0.0024,90,54,2850,180,275550,76
+Leblon,Rua José Linhares,8,61,16500,0.0048,88,63,5000,330,492800,40
+Flamengo,Rua Barão de Icaraí,8,61,9200,0.0048,88,55,1800,130,184800,92
+Copacabana,Rua Conselheiro Lafaiete,8,55,8200,0.0006,90,52,2750,180,270050,77
+Copacabana,João Saldanha,8,63,8200,0.0048,90,55,2900,190,284900,75
+Jardim Botânico,Rua Visconde da Graça,8,63,12500,0.0048,45,51,2900,190,284900,75
+Copacabana,Praça Serzedelo Correia,8,55,8200,0.0048,98,53,2750,180,270050,77
+Catete,Praça José de Alencar,8,69,6900,0.0048,82,55,1550,110,157850,96
+Laranjeiras,Rua Professor Ortiz Monteiro,8,63,8500,0.0048,75,53,1850,140,194150,90
+Botafogo,Praça Ozanan,8,66,9800,0.0048,95,59,2900,190,284900,75
+Urca,Rua Marechal Cantuária,8,67,11800,0.0048,35,50,1550,110,157850,96
+Leblon,Rua General Artigas,8,61,16500,0.0048,88,63,5000,330,492800,40
+Catete,Travessa Carlos de Sá,8,59,6900,0.0048,82,51,1450,100,145750,98
+Urca,Rua Cândido Gaffrée,8,65,11800,0.0048,35,49,1500,100,148500,98
+Catete,Rua Tavares Bastos,8,59,6900,0.0006,75,50,1450,100,145750,98
+Ipanema,João Saldanha,8,63,14800,0.0048,90,62,5050,330,495550,39
+Ipanema,Rua Redentor,8,61,14800,0.0048,90,61,5000,330,492800,40
+Laranjeiras,Rua Cardoso Júnior,8,64,8500,0.0006,95,58,1850,140,194150,90
+Laranjeiras,Rua Conde de Baependi,8,66,8500,0.0024,88,57,1850,140,194150,90
+Catete,Rua Gago Coutinho,8,61,6900,0.0048,82,52,1500,100,148500,98
+Copacabana,Rua Leopoldo Miguez,8,55,8200,0.0048,98,53,2750,180,270050,77
+Flamengo,Rua Tucuman,8,64,9200,0.0048,88,57,1850,140,194150,90
+Laranjeiras,Rua Pinheiro Machado,8,72,8500,0.0048,75,57,1900,140,196900,89
+Botafogo,Botafogo,8,79,9800,0.0048,95,65,3100,200,302500,72
+Ipanema,Rua Nascimento Silva,7,63,14800,0.0042,90,62,5050,330,495550,39
+Ipanema,Rua Bulhões de Carvalho,7,64,14800,0.0042,98,64,5100,330,498300,39
+Copacabana,Travessa Angrense,7,63,8200,0.0042,98,57,2900,190,284900,75
+Botafogo,Rua Paulino Fernandes,7,66,9800,0.0042,95,59,2900,190,284900,75
+Copacabana,Rua 5 de Julho,7,54,8200,0.0042,98,53,2750,180,270050,77
+Humaitá,Rua Viúva Lacerda,7,58,9100,0.0042,70,50,2800,180,272800,77
+Jardim Botânico,Rua Batista da Costa,7,60,12500,0.0042,45,49,2850,190,282150,75
+Flamengo,Rua Barão do Flamengo,7,65,9200,0.0042,88,57,1850,140,194150,90
+Laranjeiras,Praça São Salvador,7,62,8500,0.0042,75,52,1800,130,184800,92
+Ipanema,Avenida Rainha Elizabeth,7,66,14800,0.0042,90,63,5100,340,504900,38
+Botafogo,Avenida Venceslau Braz,7,67,9800,0.0042,95,60,2950,190,287650,74
+Botafogo,Rua Marques,7,76,9800,0.0042,95,64,3050,190,293150,73
+Botafogo,Rua Bartolomeu Portela,7,54,9800,0.0042,95,54,2750,180,270050,77
+Copacabana,Ladeira dos Tabajaras,7,63,8200,0.0012,95,56,2900,190,284900,75
+Ipanema,Rua Júlio de Castilhos,7,54,14800,0.0042,98,59,4900,320,480700,42
+Copacabana,Rua Júlio de Castilhos,7,54,8200,0.0042,98,53,2750,180,270050,77
+Jardim Botânico,Rua Maria Angélica,7,54,12500,0.0042,45,46,2750,180,270050,77
+Botafogo,Largo Almirante Índio do Brasil,7,58,9800,0.0042,95,55,2800,180,272800,77
+Copacabana,Rua Gomes Carneiro,7,62,8200,0.0042,98,56,2850,190,282150,75
+Copacabana,Rua Bulhões de Carvalho,7,64,8200,0.0042,98,57,2900,190,284900,75
+Laranjeiras,Rua Leite Leal,6,53,8500,0.0036,75,47,1750,130,182050,92
+Botafogo,Rua Lauro Müller,6,73,9800,0.0036,95,62,3000,190,290400,74
+Laranjeiras,Largo Professor Saul Borges Carneiro,6,53,8500,0.0036,75,47,1750,130,182050,92
+Copacabana,Praça Shimon Peres,6,61,8200,0.0036,98,55,2850,190,282150,75
+Catete,Rua Almirante Tamandaré,6,64,6900,0.0036,88,53,1500,100,148500,98
+Flamengo,Rua Almirante Tamandaré,6,64,9200,0.0036,88,56,1850,140,194150,90
+Botafogo,Rua Assunção,6,59,9800,0.0036,95,55,2850,180,275550,76
+Humaitá,Rua Visconde de Silva,6,66,9100,0.0024,95,58,2900,190,284900,75
+Copacabana,Rua Sousa Lima,6,59,8200,0.0036,98,54,2850,180,275550,76
+Botafogo,Rua Dona Mariana,6,67,9800,0.0036,95,59,2950,190,287650,74
+Botafogo,Rua Lacerda de Almeida,6,53,9800,0.0036,95,53,2750,180,270050,77
+Gávea,Rua José Roberto Macedo Soares,6,59,13200,0.0036,45,49,1450,100,145750,98
+Leblon,Rua General Urquiza,6,64,16500,0.0036,88,63,5100,330,498300,39
+Gávea,Rua Jardim Botânico,6,69,13200,0.0036,45,54,1550,110,157850,96
+Botafogo,Rua Marquês de Olinda,6,68,9800,0.0036,95,60,2950,190,287650,74
+Ipanema,Rua Francisco Sá,6,61,14800,0.0036,90,61,5000,330,492800,40
+Humaitá,Rua Macedo Sobrinho,6,59,9100,0.0036,70,50,2850,180,275550,76
+Catete,Rua Governador Irineu Bornhausen,6,59,6900,0.0036,88,51,1450,100,145750,98
+Flamengo,Rua Governador Irineu Bornhausen,6,59,9200,0.0036,88,53,1800,130,184800,92
+Botafogo,Rua Henrique de Novais,6,59,9800,0.0036,95,55,2850,180,275550,76
+Urca,Rua Ramon Franco,6,61,11800,0.0036,35,46,1500,100,148500,98
+Leblon,Rua Tubira,6,61,16500,0.0036,88,62,5000,330,492800,40
+Botafogo,Rua Teresa Guimarães,6,62,9800,0.0036,95,57,2850,190,282150,75
+Laranjeiras,Rua Esteves Júnior,6,65,8500,0.0036,75,53,1850,140,194150,90
+Humaitá,Rua General Dionísio,6,59,9100,0.0036,70,50,2850,180,275550,76
+Botafogo,Travessa Visconde de Morais,6,61,9800,0.0036,95,56,2850,190,282150,75
+Copacabana,Travessa Frederico Pamplona,5,56,8200,0.003,98,53,2800,180,272800,77
+Catete,Travessa Almirante Protogenes Guimarães,5,60,6900,0.003,82,50,1500,100,148500,98
+Leblon,Avenida Afrânio de Melo Franco,5,65,16500,0.003,88,63,5100,330,498300,39
+Botafogo,Rua Álvaro Ramos,5,52,9800,0.003,95,52,2750,180,270050,77
+Flamengo,Rua Ferreira Viana,5,56,9200,0.003,82,50,1750,130,182050,92
+Catete,Rua Ferreira Viana,5,56,6900,0.003,82,48,1450,100,145750,98
+Laranjeiras,Rua Engenheiro Moacir Reis,5,60,8500,0.003,75,50,1800,130,184800,92
+Laranjeiras,Rua Erfurt,5,52,8500,0.003,75,46,1700,130,179300,92
+Copacabana,Rua Djalma Ulrich,5,52,8200,0.003,98,51,2750,180,270050,77
+Copacabana,Rua Edmundo Lins,5,52,8200,0.003,98,51,2750,180,270050,77
+Ipanema,Largo do Millôr,5,52,14800,0.003,90,56,4850,320,477950,42
+Ipanema,Rua Raul Pompéia,5,65,14800,0.003,90,62,5100,330,498300,39
+Catete,Escadaria do Morro Santo Amaro,5,52,6900,0.003,82,46,1400,100,143000,99
+Urca,Via Verde,5,52,11800,0.003,35,42,1400,100,143000,99
+Botafogo,Rua Álvares Borgerth,5,60,9800,0.003,95,55,2850,190,282150,75
+Botafogo,Rua da Matriz,5,64,9800,0.003,95,57,2900,190,284900,75
+Leblon,Rua Adalberto Ferreira,5,60,16500,0.003,88,61,5000,330,492800,40
+Laranjeiras,Rua Soares Cabral,5,60,8500,0.003,75,50,1800,130,184800,92
+Ipanema,Rua Canning,5,52,14800,0.003,90,56,4850,320,477950,42
+Flamengo,Rua Barão de Itambi,4,62,9200,0.0024,95,55,1800,130,184800,92
+Copacabana,Rua Cinco de Julho,4,51,8200,0.0024,98,50,2700,180,267300,78
+Copacabana,Rua Fernando Mendes,4,51,8200,0.0024,98,50,2700,180,267300,78
+Copacabana,Praça Vereador Rocha Leão,4,51,8200,0.0024,98,50,2700,180,267300,78
+Copacabana,Ronald de Carvalho,4,62,8200,0.0024,98,55,2850,190,282150,75
+Jardim Botânico,Rua Alberto Ribeiro,4,51,12500,0.0024,45,44,2700,180,267300,78
+Copacabana,Rua Silva Castro,4,51,8200,0.0024,98,50,2700,180,267300,78
+Botafogo,Rua Barão de Itambi,4,62,9800,0.0024,95,56,2850,190,282150,75
+Flamengo,Rua Honório de Barros,4,51,9200,0.0024,88,49,1700,130,179300,92
+Gávea,Rua Mary Pessoa,4,57,13200,0.0024,45,47,1450,100,145750,98
+Copacabana,Rua Marechal Mascarenhas de Morais,4,51,8200,0.0024,98,50,2700,180,267300,78
+Botafogo,Rua Marechal Niemeyer,4,51,9800,0.0024,95,51,2700,180,267300,78
+Jardim Botânico,Largo Otto Lara Resende,4,55,12500,0.0024,45,45,2750,180,270050,77
+Humaitá,Rua João Afonso,4,60,9100,0.0024,70,49,2850,190,282150,75
+Jardim Botânico,Rua Saturnino de Brito,4,55,12500,0.0024,45,45,2750,180,270050,77
+Leblon,Rua Conde de Bernadote,4,51,16500,0.0024,88,56,4800,320,475200,43
+Leblon,Rua Cupertino Durão,4,57,16500,0.0024,88,59,4950,330,490050,40
+Flamengo,Rua Desembargador Sady Gusmão,4,59,9200,0.0024,88,52,1800,130,184800,92
+Flamengo,Rua Conde de Baependi,4,62,9200,0.0024,88,54,1800,130,184800,92
+Botafogo,Rua Eduardo Guinle,4,59,9800,0.0024,95,54,2850,180,275550,76
+Jardim Botânico,Rua Faro,4,51,12500,0.0024,45,44,2700,180,267300,78
+Copacabana,Rua Tenreiro Aranha,4,61,8200,0.0024,98,54,2850,190,282150,75
+Botafogo,Rua General Góis Monteiro,4,57,9800,0.0024,95,53,2800,180,272800,77
+Jardim Botânico,Rua General Garzon,4,51,12500,0.0024,45,44,2700,180,267300,78
+Copacabana,Rua Guimarães Natal,4,59,8200,0.0024,98,53,2850,180,275550,76
+Leblon,Rua Gilberto Cardoso,4,57,16500,0.0024,88,59,4950,330,490050,40
+Copacabana,Travessa Cristiano Lacorte,4,51,8200,0.0024,98,50,2700,180,267300,78
+Botafogo,Travessa Pepe,4,61,9800,0.0024,95,55,2850,190,282150,75
+Botafogo,Rua Oliveira Fausto,4,51,9800,0.0024,95,51,2700,180,267300,78
+Leblon,Rua Mário Ribeiro,4,55,16500,0.0012,45,50,4900,320,480700,42
+Leblon,Avenida Rodrigo Otávio,4,63,16500,0.0024,88,62,5050,330,495550,39
+Leblon,Rua Rita Ludolf,4,55,16500,0.0024,88,58,4900,320,480700,42
+Botafogo,Rua Rodrigo de Brito,4,51,9800,0.0024,95,51,2700,180,267300,78
+Laranjeiras,"Rua das Laranjeiras, 336",4,71,8500,0.0024,75,54,1900,140,196900,89
+Botafogo,Rua Professor Alfredo Gomes,4,62,9800,0.0024,95,56,2850,190,282150,75
+Ipanema,Avenida Francisco Bhering,4,51,14800,0.0024,90,55,4800,320,475200,43
+Flamengo,Rua Paulo VI,4,60,9200,0.0006,75,50,1800,130,184800,92
+Laranjeiras,Rua Professora Estelita Lins,4,57,8500,0.0024,75,48,1750,130,182050,92
+Ipanema,Rua Joaquim Nabuco,4,55,14800,0.0024,90,57,4900,320,480700,42
+Leblon,Rua Almirante Guilhem,4,59,16500,0.0024,88,60,5000,330,492800,40
+Botafogo,Rua Visconde de Silva,4,64,9800,0.0024,95,57,2900,190,284900,75
+Botafogo,Rua Ipu,4,57,9800,0.0024,95,53,2800,180,272800,77
+Laranjeiras,Rua Engenheiro Fernando Nascimento da Silva,3,53,8500,0.0018,75,46,1750,130,182050,92
+Laranjeiras,Rua Eugênio Hussek,3,50,8500,0.0018,75,44,1700,130,179300,92
+Laranjeiras,Travessa Euricles Mattos,3,53,8500,0.0018,75,46,1750,130,182050,92
+Botafogo,Rua Hans Staden,3,53,9800,0.0018,95,51,2750,180,270050,77
+Humaitá,Rua Conde de Irajá,3,63,9100,0.0018,70,50,2900,190,284900,75
+São Conrado,Rua São Leobaldo,3,53,11500,0.0018,30,40,1400,100,143000,99
+São Conrado,Rua Embaixador Gabriel Landa,3,50,11500,0.0018,30,38,1400,100,143000,99
+Botafogo,Rua São Manuel,3,53,9800,0.0018,95,51,2750,180,270050,77
+Jardim Botânico,Rua Conde Afonso Celso,3,50,12500,0.0018,45,42,2700,180,267300,78
+Humaitá,Rua Cesário Alvim,3,50,9100,0.0018,70,44,2700,180,267300,78
+Gávea,Rua Professor Manoel Ferreira,3,53,13200,0.0018,45,44,1400,100,143000,99
+Laranjeiras,Rua Álvaro Chaves,3,50,8500,0.0018,75,44,1700,130,179300,92
+Laranjeiras,Rua Pereira da Silva,3,56,8500,0.0018,75,47,1750,130,182050,92
+Ipanema,Rua Paul Redfern,3,50,14800,0.0018,90,54,4800,320,475200,43
+Copacabana,Cardeal Arcoverde,3,63,8200,0.0018,98,54,2900,190,284900,75
+São Conrado,Estrada do Joá,3,53,11500,0.0018,30,40,1400,100,143000,99
+Urca,Praça dos Bondes,3,50,11800,0.0018,35,40,1400,100,143000,99
+Gávea,Rua Artur Araripe,3,56,13200,0.0018,45,46,1450,100,145750,98
+Leblon,Rua Jerônimo Monteiro,3,50,16500,0.0018,88,55,4800,320,475200,43
+Copacabana,Rua Carvalho de Mendonça,3,53,8200,0.0018,98,50,2750,180,270050,77
+Leblon,Rua Professor Azevedo Marques,3,57,16500,0.0018,88,58,4950,330,490050,40
+Flamengo,Rua do Pinheiro,3,50,9200,0.0018,88,48,1700,130,179300,92
+Copacabana,Praça Eugênio Jardim,3,58,8200,0.0018,98,52,2800,180,272800,77
+Botafogo,Passagem Paulo Roberto Lopes Lima,3,59,9800,0.0018,95,54,2850,180,275550,76
+Copacabana,Rua Anita Garibaldi,3,50,8200,0.0018,98,48,2700,180,267300,78
+Leblon,Rua João Lira,3,50,16500,0.0018,88,55,4800,320,475200,43
+Humaitá,Rua Vitório da Costa,3,58,9100,0.0018,70,47,2800,180,272800,77
+Leblon,Rua Almirante Pereira Guimarães,3,56,16500,0.0018,88,58,4900,330,487300,41
+Copacabana,Rua Assis Brasil,3,57,8200,0.0018,98,52,2800,180,272800,77
+Ipanema,Rua Alberto de Campos,3,50,14800,0.0018,90,54,4800,320,475200,43
+Jardim Botânico,Rua Barao de Oliveira Castro,3,56,12500,0.0018,45,45,2800,180,272800,77
+Botafogo,Rua Capistrano de Abreu,3,58,9800,0.0012,70,48,2800,180,272800,77
+Botafogo,Rua Doutor Xavier Sigaud,2,60,9800,0.0012,35,41,2850,190,282150,75
+Botafogo,Rua Doutor Sampaio Corrêa,2,48,9800,0.0012,95,48,2650,180,264550,78
+Laranjeiras,Rua Coelho Neto,2,51,8500,0.0012,75,44,1700,130,179300,92
+Botafogo,Rua Diniz Cordeiro,2,48,9800,0.0012,95,48,2650,180,264550,78
+São Conrado,Rua General Olympio Mourão Filho,2,55,11500,0.0012,30,40,1450,100,145750,98
+Copacabana,Rua General Barbosa Lima,2,54,8200,0.0012,98,49,2750,180,270050,77
+Urca,Rua Doutor Xavier Sigaud,2,60,11800,0.0012,35,43,1500,100,148500,98
+Copacabana,Travessa Jaú,2,48,8200,0.0012,98,47,2650,180,264550,78
+Gávea,Avenida Bartolomeu Mitre,2,63,13200,0.0012,45,48,1500,100,148500,98
+Leblon,Avenida Borges de Medeiros,2,57,16500,0.0012,88,57,4950,330,490050,40
+São Conrado,Autoestrada Engenheiro Fernando Mac Dowell,2,66,11500,0.0012,30,44,1550,100,151250,97
+Botafogo,Rua Marechal Ramon Castilla,2,54,9800,0.0012,95,50,2750,180,270050,77
+Leblon,Rua Leblon,2,48,16500,0.0012,88,53,4750,320,472450,43
+Copacabana,Rua Joseph Bloch,2,48,8200,0.0012,98,47,2650,180,264550,78
+Gávea,Rua General Rabelo,2,51,13200,0.0012,45,43,1400,100,143000,99
+Jardim Botânico,Rua Caminhoá,2,48,12500,0.0012,45,40,2650,180,264550,78
+Urca,Rua Joaquim Caetano,2,54,11800,0.0012,35,40,1450,100,145750,98
+Copacabana,Rua Sá Ferreira,2,57,8200,0.0012,98,51,2800,180,272800,77
+Humaitá,Rua Capistrano de Abreu,2,56,9100,0.0012,70,45,2800,180,272800,77
+Catete,Rua Barão de Guaratiba,2,48,6900,0.0012,82,42,1400,100,143000,99
+Copacabana,Rua Capelão Álvares da Silva,2,51,8200,0.0012,98,48,2700,180,267300,78
+Botafogo,Rua Camuirano,2,51,9800,0.0012,95,49,2700,180,267300,78
+Ipanema,Praça Professor José Acioli,2,48,14800,0.0012,90,52,4750,320,472450,43
+Leblon,Rua Juquiá,2,48,16500,0.0012,88,53,4750,320,472450,43
+Urca,Praça Tenente Gil Guilherme,2,48,11800,0.0012,35,38,1400,100,143000,99
+Ipanema,Rua Barão de Jaguaripe,2,48,14800,0.0012,90,52,4750,320,472450,43
+Botafogo,Rua Barão de Lucena,2,56,9800,0.0012,95,51,2800,180,272800,77
+Jardim Botânico,Rua Abreu Fialho,2,54,12500,0.0012,45,43,2750,180,270050,77
+Botafogo,Rua Assis Bueno,2,51,9800,0.0012,95,49,2700,180,267300,78
+Gávea,Rua das Acácias,2,48,13200,0.0012,45,41,1400,100,143000,99
+Botafogo,Rua Ministro Raul Fernandes,2,51,9800,0.0012,95,49,2700,180,267300,78
+Humaitá,Rua Maria Eugênia,2,54,9100,0.0012,70,45,2750,180,270050,77
+Gávea,Estrada da Gávea,2,64,13200,0.0012,45,48,1500,100,148500,98
+Copacabana,Belfort Roxo,2,61,8200,0.0012,98,52,2850,190,282150,75
+Botafogo,Rua Natal,2,51,9800,0.0012,95,49,2700,180,267300,78
+Jardim Botânico,Rua Marquês de Sabará,2,58,12500,0.0012,45,45,2800,180,272800,77
+Urca,Mureta da Urca,2,55,11800,0.0012,35,41,1450,100,145750,98
+Botafogo,Ladeira dos Tabajaras,2,56,9800,0.0012,95,51,2800,180,272800,77
+Gávea,Rua Mário Ribeiro,2,51,13200,0.0012,45,43,1400,100,143000,99
+Urca,Rua Osório de Almeida,2,54,11800,0.0012,35,40,1450,100,145750,98
+Copacabana,Rua Saint Roman,2,56,8200,0.0012,98,50,2800,180,272800,77
+Copacabana,Rua Otaviano Hudson,2,57,8200,0.0012,98,51,2800,180,272800,77
+Urca,Rua Otávio Correia,2,51,11800,0.0012,35,39,1400,100,143000,99
+Flamengo,Avenida Rui Barbosa,2,61,9200,0.0006,95,53,1800,130,184800,92
+Botafogo,Avenida Repórter Nestor Moreira,2,54,9800,0.0012,95,50,2750,180,270050,77
+Botafogo,Rua Paulo VI,2,56,9800,0.0006,75,47,2800,180,272800,77
+São Conrado,Avenida Niemeyer,2,65,11500,0.0012,30,44,1500,100,148500,98
+Botafogo,Avenida Lauro Sodré,2,64,9800,0.0012,95,55,2900,190,284900,75
+Flamengo,Avenida Infante Dom Henrique,2,56,9200,0.0012,95,51,1750,130,182050,92
+Botafogo,Avenida Infante Dom Henrique,2,56,9800,0.0012,95,51,2800,180,272800,77
+Copacabana,Rua Piragibe Frota Aguiar,2,51,8200,0.0012,90,46,2700,180,267300,78
+Ipanema,Rua Piragibe Frota Aguiar,2,51,14800,0.0012,90,53,4800,320,475200,43
+Leblon,Rua Professor Arthur Ramos,2,48,16500,0.0012,88,53,4750,320,472450,43
+Leblon,Autoestrada Lagoa-Barra,1,45,16500,0.0006,88,50,4700,320,469700,44
+Flamengo,Avenida Beira-Mar,1,54,9200,0.0006,88,47,1750,130,182050,92
+Botafogo,Avenida Carlos Peixoto,1,52,9800,0.0006,95,48,2750,180,270050,77
+Urca,Travessa do Procópio,1,55,11800,0.0006,35,39,1450,100,145750,98
+Laranjeiras,Rua Pires de Almeida,1,45,8500,0.0006,75,39,1650,130,176550,93
+Laranjeiras,Rua Presidente Carlos de Campos,1,49,8500,0.0006,75,41,1700,130,179300,92
+São Conrado,Rua Princesa Diana de Gales,1,45,11500,0.0006,30,35,1350,100,140250,99
+Botafogo,Rua Principado de Mônaco,1,49,9800,0.0006,95,47,2700,180,267300,78
+Gávea,Rua Quintino Cunha,1,45,13200,0.0006,45,38,1350,100,140250,99
+Laranjeiras,Rua Paulo VI,1,54,8500,0.0006,75,44,1750,130,182050,92
+Laranjeiras,Rua Rumânia,1,51,8500,0.0006,75,42,1700,130,179300,92
+Laranjeiras,Rua Moura Brasil,1,49,8500,0.0006,75,41,1700,130,179300,92
+Botafogo,Rua Mundo Novo,1,45,9800,0.0006,95,45,2650,180,264550,78
+Humaitá,Rua Mário de Andrade,1,45,9100,0.0006,70,39,2650,180,264550,78
+Jardim Botânico,Rua Nina Rodrigues,1,45,12500,0.0006,45,38,2650,180,264550,78
+Urca,Rua Odílio Bacelar,1,54,11800,0.0006,35,39,1450,100,145750,98
+Laranjeiras,Rua Marquesa de Santos,1,55,8500,0.0006,75,44,1750,130,182050,92
+Flamengo,Rua Martins Ribeiro,1,49,9200,0.0006,88,45,1700,130,179300,92
+Humaitá,Rua Miguel Pereira,1,52,9100,0.0006,70,42,2750,180,270050,77
+Leblon,Rua Ministro Raul Machado,1,54,16500,0.0006,88,54,4900,320,480700,42
+Urca,Rua Lírio da Paz,1,45,11800,0.0006,35,35,1350,100,140250,99
+Gávea,Rua Major Rubens Vaz,1,51,13200,0.0006,45,41,1400,100,143000,99
+Botafogo,Rua Marechal Francisco de Moura,1,49,9800,0.0006,95,47,2700,180,267300,78
+Jardim Botânico,Rua José Joaquim Seabra,1,45,12500,0.0006,45,38,2650,180,264550,78
+São Conrado,Rua Julieta Niemeyer,1,49,11500,0.0006,30,35,1400,100,143000,99
+Humaitá,Rua São Clemente,1,64,9100,0.0006,70,48,2900,190,284900,75
+Copacabana,Rua Inhangá,1,52,8200,0.0006,98,47,2750,180,270050,77
+Jardim Botânico,Rua Joaquim Campos Porto,1,54,12500,0.0006,45,42,2750,180,270050,77
+Jardim Botânico,Rua Getúlio das Neves,1,45,12500,0.0006,45,38,2650,180,264550,78
+São Conrado,Rua Herbert Moses,1,45,11500,0.0006,30,35,1350,100,140250,99
+São Conrado,Rua Engenheiro Álvaro Niemeyer,1,45,11500,0.0006,30,35,1350,100,140250,99
+Jardim Botânico,Rua Eurico Cruz,1,45,12500,0.0006,45,38,2650,180,264550,78
+Leblon,Rua Fadel Fadel,1,45,16500,0.0006,88,50,4700,320,469700,44
+Jardim Botânico,Rua Doutor Girondino Estêves,1,51,12500,0.0006,45,40,2700,180,267300,78
+Leblon,Rua Doutor Marques Canário,1,52,16500,0.0006,88,54,4850,320,477950,42
+Urca,Rua Elmano Cardim,1,45,11800,0.0006,35,35,1350,100,140250,99
+São Conrado,Rua Engenheiro Amandino de Carvalho,1,55,11500,0.0006,30,38,1450,100,145750,98
+Laranjeiras,Rua Tavares Bastos,1,49,8500,0.0006,75,41,1700,130,179300,92
+Botafogo,Rua Teodor Herzl,1,45,9800,0.0006,95,45,2650,180,264550,78
+Ipanema,Rua Tereza Aragão,1,49,14800,0.0006,90,51,4800,320,475200,43
+Urca,Rua Urbano Santos,1,52,11800,0.0006,35,38,1400,100,143000,99
+Botafogo,Rua Vicente de Sousa,1,51,9800,0.0006,95,48,2700,180,267300,78
+Ipanema,Rua Conselheiro Lafaiete,1,45,14800,0.0006,90,49,4700,320,469700,44
+São Conrado,Rua Coronel Ribeiro Gomes,1,51,11500,0.0006,30,36,1400,100,143000,99
+Catete,Rua Cruzeiro do Sul,1,45,6900,0.0006,82,39,1350,100,140250,99
+Leblon,Rua Desembargador Alfredo Russel,1,49,16500,0.0006,88,52,4800,320,475200,43
+Botafogo,Rua Clotilde Guimarães,1,58,9800,0.0006,95,51,2800,180,272800,77
+Copacabana,Rua Bonfim,1,45,8200,0.0006,98,44,2650,180,264550,78
+Leblon,Rua Capitão César de Andrade,1,45,16500,0.0006,88,50,4700,320,469700,44
+Botafogo,Rua Cardoso Júnior,1,54,9800,0.0006,95,49,2750,180,270050,77
+Botafogo,Rua Barão de Macaúbas,1,52,9800,0.0006,95,48,2750,180,270050,77
+Laranjeiras,Rua Belisário Távora,1,49,8500,0.0006,75,41,1700,130,179300,92
+Laranjeiras,Rua Aparício Borges,1,45,8500,0.0006,75,39,1650,130,176550,93
+Laranjeiras,Rua Alegrete,1,52,8500,0.0006,75,43,1700,130,179300,92
+Laranjeiras,Rua Almirante Salgado,1,51,8500,0.0006,75,42,1700,130,179300,92
+Urca,Praça Felix Laranjeiras,1,49,11800,0.0006,35,37,1400,100,143000,99
+Botafogo,Praça Nicarágua,1,54,9800,0.0006,95,49,2750,180,270050,77
+Leblon,Praça Nosa Senhora Auxiliadora,1,55,16500,0.0006,88,55,4900,320,480700,42
+Botafogo,Praça Praia Nova,1,45,9800,0.0006,95,45,2650,180,264550,78
+Urca,Praça Tomás Santa Rosa,1,54,11800,0.0006,35,39,1450,100,145750,98
+Urca,Praia da Urca,1,52,11800,0.0006,35,38,1400,100,143000,99
+Botafogo,Largo Ibam,1,51,9800,0.0006,70,43,2700,180,267300,78
+Humaitá,Largo Ibam,1,51,9100,0.0006,70,42,2700,180,267300,78
+Copacabana,Largo Ibrahim Sued,1,45,8200,0.0006,98,44,2650,180,264550,78
+Urca,Marechal Cantuária,1,57,11800,0.0006,35,40,1450,100,145750,98
+Copacabana,Rua da Caixa d'água (NR),1,45,8200,0.0006,98,44,2650,180,264550,78
+Botafogo,Rua das Flores,1,49,9800,0.0006,35,35,2700,180,267300,78
+Urca,Rua das Flores,1,49,11800,0.0006,35,37,1400,100,143000,99
+Gávea,Rua Álvaro Americano,1,45,13200,0.0006,45,38,1350,100,140250,99
+Ipanema,Jardim de Alah,1,54,14800,0.0006,90,53,4900,320,480700,42
+Copacabana,Estrada do Cantagalo,1,51,8200,0.0006,90,45,2700,180,267300,78
+Ipanema,Estrada do Cantagalo,1,51,14800,0.0006,90,52,4800,320,475200,43
+Botafogo,Avenida Rui Barbosa,1,59,9800,0.0006,95,51,2850,180,275550,76
+Urca,Avenida São Sebastião,1,45,11800,0.0006,35,35,1350,100,140250,99
+Ipanema,Avenida Nossa Senhora de Copacabana,1,68,14800,0.0006,90,59,5150,340,507650,37
+Laranjeiras,Travessa Pinto da Rocha,1,45,8500,0.0006,75,39,1650,130,176550,93
