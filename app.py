@@ -139,9 +139,9 @@ def get_color(row):
     ratio = (score - score_min) / (score_max - score_min)
 
     # Rouge -> Jaune -> Vert
-    red_color = [234, 102, 102]
-    yellow_color = [255, 217, 0]
-    green_color = [92, 184, 92]
+red_color = [238, 140, 140]
+yellow_color = [255, 217, 0]
+green_color = [0, 176, 80]
 
     if ratio <= 0.5:
 
