@@ -109,41 +109,61 @@ if not df_base.empty:
         st.metric("Rues éligibles au budget", f"{len(df_faisable)} / {len(df_base)}")
         st.metric("Surface testée", f"{surface_cible} m²")
 
-    # Carte interactive PyDeck avec les tracés lissés (PathLayer)
-    st.subheader("🗺️ Cartographie des Rues - Tracés Réels Lissés (Zona Sul)")
-    
-    def get_color(row):
-        if not row['Faisable']:
-            return [200, 50, 50, 140]  # Rouge transparent si non faisable
-        score = row['Score_Global_Final']
-        if score > 75:
-            return [0, 220, 100, 230]  # Vert vif
-        elif score > 50:
-            return [50, 150, 250, 230] # Bleu
-        elif score > 25:
-            return [250, 200, 0, 230]  # Jaune
-        else:
-            return [200, 100, 50, 230] # Orange
+# Carte interactive PyDeck avec dégradé Rouge -> Vert
 
-    df_base['color'] = df_base.apply(get_color, axis=1)
-    view_state = pdk.ViewState(latitude=-22.9711, longitude=-43.1822, zoom=13, pitch=30)
+st.subheader("🗺️ Cartographie des Rues - Tracés Réels Lissés (Zona Sul)")
 
-    layer = pdk.Layer(
-        "PathLayer",
-        data=df_base,
-        get_path="path",
-        get_color="color",
-        width_scale=20,
-        width_min_pixels=4,
-        pickable=True,
-        auto_highlight=True,
-    )
+def get_color(row):
 
-    r = pdk.Deck(
-        layers=[layer], 
-        initial_view_state=view_state, 
-        tooltip={
-            "text": "Quartier: {Bairro}\nRue: {Rua}\nFlux Piétons: {Indice_Fluxo_Pedestres}\nScore Global: {Score_Global_Final}\nLuvas Total: {Luvas_Total:,.0f} R$\nLoyer: {Aluguel_Mensal_Total:,.0f} R$"
-        }
-    )
-    st.pydeck_chart(r)
+    # Hors budget = gris foncé
+    if not row['Faisable']:
+        return [70, 70, 70, 180]
+
+    score = float(row['Score_Global_Final'])
+
+    # Bornage de sécurité
+    score = max(0, min(100, score))
+
+    # Dégradé linéaire Rouge -> Vert
+    red = int(255 * (1 - score / 100))
+    green = int(255 * (score / 100))
+
+    return [red, green, 0, 230]
+
+df_base['color'] = df_base.apply(get_color, axis=1)
+
+view_state = pdk.ViewState(
+    latitude=-22.9711,
+    longitude=-43.1822,
+    zoom=13,
+    pitch=0
+)
+
+layer = pdk.Layer(
+    "PathLayer",
+    data=df_base,
+    get_path="path",
+    get_color="color",
+    width_scale=35,
+    width_min_pixels=5,
+    pickable=True,
+    auto_highlight=True,
+)
+
+r = pdk.Deck(
+    map_style="road",
+    layers=[layer],
+    initial_view_state=view_state,
+    tooltip={
+        "html": """
+        <b>{Rua}</b><br/>
+        <b>Quartier :</b> {Bairro}<br/>
+        <b>Flux Piétons :</b> {Indice_Fluxo_Pedestres}<br/>
+        <b>Score Global :</b> {Score_Global_Final}<br/>
+        <b>Luvas :</b> R$ {Luvas_Total}<br/>
+        <b>Loyer :</b> R$ {Aluguel_Mensal_Total}
+        """
+    }
+)
+
+st.pydeck_chart(r)
