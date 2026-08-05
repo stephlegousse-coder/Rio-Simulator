@@ -118,7 +118,6 @@ st.subheader("🗺️ Cartographie des Rues - Tracés Réels Lissés (Zona Sul)"
 score_min = float(df_base["Score_Global_Final"].min())
 score_max = float(df_base["Score_Global_Final"].max())
 
-
 def interpolate(c1, c2, t):
     return [
         int(c1[0] + (c2[0] - c1[0]) * t),
@@ -127,10 +126,9 @@ def interpolate(c1, c2, t):
         220
     ]
 
-
 def get_color(row):
 
-    # Hors budget = gris
+    # Hors budget
     if not row["Faisable"]:
         return [110, 110, 110, 180]
 
@@ -138,33 +136,30 @@ def get_color(row):
 
     ratio = (score - score_min) / (score_max - score_min)
 
-    # Rouge -> Jaune -> Vert
-red_color = [238, 140, 140]
-yellow_color = [255, 217, 0]
-green_color = [0, 176, 80]
+    # Palette type Excel
+    red_color = [240, 150, 150]
+    yellow_color = [255, 217, 0]
+    green_color = [0, 176, 80]
 
     if ratio <= 0.5:
 
         t = ratio * 2
 
-        return [
-            int(red_color[0] + (yellow_color[0] - red_color[0]) * t),
-            int(red_color[1] + (yellow_color[1] - red_color[1]) * t),
-            int(red_color[2] + (yellow_color[2] - red_color[2]) * t),
-            220
-        ]
+        return interpolate(
+            red_color,
+            yellow_color,
+            t
+        )
 
     else:
 
         t = (ratio - 0.5) * 2
 
-        return [
-            int(yellow_color[0] + (green_color[0] - yellow_color[0]) * t),
-            int(yellow_color[1] + (green_color[1] - yellow_color[1]) * t),
-            int(yellow_color[2] + (green_color[2] - yellow_color[2]) * t),
-            220
-        ]
-
+        return interpolate(
+            yellow_color,
+            green_color,
+            t
+        )
 
 df_base["color"] = df_base.apply(get_color, axis=1)
 
