@@ -115,36 +115,54 @@ if not df_base.empty:
 
 st.subheader("🗺️ Cartographie des Rues - Tracés Réels Lissés (Zona Sul)")
 
-# Calcul automatique des bornes du score
 score_min = float(df_base["Score_Global_Final"].min())
 score_max = float(df_base["Score_Global_Final"].max())
 
+
+def interpolate(c1, c2, t):
+    return [
+        int(c1[0] + (c2[0] - c1[0]) * t),
+        int(c1[1] + (c2[1] - c1[1]) * t),
+        int(c1[2] + (c2[2] - c1[2]) * t),
+        220
+    ]
+
+
 def get_color(row):
 
-    # Hors budget = gris foncé
+    # Hors budget = gris
     if not row["Faisable"]:
-        return [90, 90, 90, 180]
+        return [120, 120, 120, 180]
 
     score = float(row["Score_Global_Final"])
 
-    # Sécurité
-    score = max(score_min, min(score_max, score))
-
-    # Normalisation du score entre 0 et 1
     ratio = (score - score_min) / (score_max - score_min)
 
-    # Rouge -> Jaune -> Vert façon Excel
+    # Palette Excel douce
+    red_color = [244, 178, 178]
+    yellow_color = [255, 235, 156]
+    green_color = [182, 215, 168]
+
     if ratio <= 0.5:
 
-        red = 255
-        green = int(255 * (ratio * 2))
+        t = ratio * 2
+
+        return interpolate(
+            red_color,
+            yellow_color,
+            t
+        )
 
     else:
 
-        red = int(255 * (1 - ((ratio - 0.5) * 2)))
-        green = 255
+        t = (ratio - 0.5) * 2
 
-    return [red, green, 0, 240]
+        return interpolate(
+            yellow_color,
+            green_color,
+            t
+        )
+
 
 df_base["color"] = df_base.apply(get_color, axis=1)
 
@@ -168,7 +186,7 @@ layer = pdk.Layer(
 )
 
 r = pdk.Deck(
-    map_style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+    map_style="road",
     layers=[layer],
     initial_view_state=view_state,
     tooltip={
@@ -181,11 +199,11 @@ r = pdk.Deck(
         ">
             <b>{Rua}</b><br><br>
 
-            <b>Quartier</b> : {Bairro}<br>
-            <b>Flux Piétons</b> : {Indice_Fluxo_Pedestres}<br>
-            <b>Score Global</b> : {Score_Global_Final}<br>
-            <b>Luvas</b> : R$ {Luvas_Total}<br>
-            <b>Loyer</b> : R$ {Aluguel_Mensal_Total}
+            <b>Quartier :</b> {Bairro}<br>
+            <b>Flux Piétons :</b> {Indice_Fluxo_Pedestres}<br>
+            <b>Score Global :</b> {Score_Global_Final}<br>
+            <b>Luvas :</b> R$ {Luvas_Total}<br>
+            <b>Loyer :</b> R$ {Aluguel_Mensal_Total}
         </div>
         """
     }
