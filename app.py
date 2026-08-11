@@ -57,25 +57,35 @@ def load_data():
 df_base = load_data()
 
 if not df_base.empty:
-    st.sidebar.header("🛠️ Paramètres Financiers")
-    user_apport = st.sidebar.number_input("Apport Total Disponible (R$)", value=700000, step=10000)
-
-    st.sidebar.subheader("Postes Fixes (One-Shot)")
-    c_travaux = st.sidebar.number_input("Custo Obras Fixo (R$)", value=170000, step=5000)
-    c_equip = st.sidebar.number_input("Custo Equipamentos (R$)", value=190763, step=5000)
-    c_mobilier = st.sidebar.number_input("Custo Mobiliário (R$)", value=20832, step=1000)
-    c_marketing = st.sidebar.number_input("Custo Marketing (R$)", value=18500, step=1000)
-    c_admin = st.sidebar.number_input("Custo Administrativo (R$)", value=18000, step=1000)
-    c_secu = st.sidebar.number_input("Custo Segurança (R$)", value=17000, step=1000)
-    c_ti = st.sidebar.number_input("Custo TI (R$)", value=5000, step=500)
-    c_reserves = st.sidebar.number_input("Reserva de Emergência (R$)", value=93000, step=5000)
+    st.sidebar.header("🛠️ Postes Fixes (One-Shot)")
+    c_travaux = st.sidebar.number_input("Custo Obras Fixo (R$)", value=170000, step=5000, key="c_travaux")
+    c_equip = st.sidebar.number_input("Custo Equipamentos (R$)", value=190763, step=5000, key="c_equip")
+    c_mobilier = st.sidebar.number_input("Custo Mobiliário (R$)", value=20832, step=1000, key="c_mobilier")
+    c_marketing = st.sidebar.number_input("Custo Marketing (R$)", value=18500, step=1000, key="c_marketing")
+    c_admin = st.sidebar.number_input("Custo Administrativo (R$)", value=18000, step=1000, key="c_admin")
+    c_secu = st.sidebar.number_input("Custo Segurança (R$)", value=17000, step=1000, key="c_secu")
+    c_ti = st.sidebar.number_input("Custo TI (R$)", value=5000, step=500, key="c_ti")
+    c_reserves = st.sidebar.number_input("Reserva de Emergência (R$)", value=93000, step=5000, key="c_reserves")
 
     total_fixes = c_travaux + c_equip + c_mobilier + c_marketing + c_admin + c_secu + c_ti + c_reserves
-    orçamento_luvas_disponivel = user_apport - total_fixes
 
     st.sidebar.markdown("---")
-    st.sidebar.metric(label="Enveloppe Luvas Disponible", value=f"{orçamento_luvas_disponivel:,.0f} R$")
-    surface_cible = st.sidebar.slider("Surface Cible (m²)", min_value=30, max_value=120, value=55, step=5)
+    st.sidebar.metric(label="Total Postes Fixes", value=f"{total_fixes:,.0f} R$")
+
+    st.markdown("---")
+    
+    # Paramètres financiers en ligne (Curseurs Luvas & Surface + Apport total calculé)
+    param_col1, param_col2 = st.columns([2, 1])
+    
+    with param_col1:
+        orçamento_luvas_disponivel = st.slider("Enveloppe Luvas Disponible (R$)", min_value=50000, max_value=500000, value=200000, step=10000, key="slider_luvas")
+        surface_cible = st.slider("Surface Cible (m²)", min_value=30, max_value=120, value=55, step=5, key="slider_surface")
+        
+    with param_col2:
+        user_apport = total_fixes + orçamento_luvas_disponivel
+        st.metric(label="Apport Total Calculé (R$)", value=f"{user_apport:,.0f} R$")
+        
+    st.markdown("---")
 
     # Calcul des coûts totaux basés sur la surface
     df_base['Luvas_Total'] = df_base['Custo_Luvas_m2_R$'] * surface_cible
@@ -84,30 +94,22 @@ if not df_base.empty:
     # Test de faisabilité
     df_base['Faisable'] = df_base['Luvas_Total'] <= orçamento_luvas_disponivel
 
-    # Filtrage du Top 10
+    # Filtrage du Top 10 (Pleine largeur)
     df_faisable = df_base[df_base['Faisable'] == True].copy()
     df_faisable = df_faisable.sort_values(by=['Indice_Fluxo_Pedestres', 'Score_Global_Final'], ascending=False).reset_index(drop=True)
     df_faisable.index = df_faisable.index + 1
 
-    col1, col2 = st.columns([2, 1])
-
-    with col1:
-        st.subheader("🏆 Top 10 des Rues (Faisables & Triées par Flux Piéton)")
-        if not df_faisable.empty:
-            cols_to_show = ['Bairro', 'Rua', 'Indice_Fluxo_Pedestres', 'Luvas_Total', 'Aluguel_Mensal_Total', 'Score_Global_Final']
-            st.dataframe(df_faisable[cols_to_show].head(10).style.format({
-                'Indice_Fluxo_Pedestres': '{:,.0f}',
-                'Luvas_Total': '{:,.0f} R$',
-                'Aluguel_Mensal_Total': '{:,.0f} R$',
-                'Score_Global_Final': '{:.1f}'
-            }), use_container_width=True)
-        else:
-            st.warning("⚠️ Aucune rue ne respecte ton budget actuel avec cette surface.")
-
-    with col2:
-        st.subheader("📊 Synthèse Globale")
-        st.metric("Rues éligibles au budget", f"{len(df_faisable)} / {len(df_base)}")
-        st.metric("Surface testée", f"{surface_cible} m²")
+    st.subheader("🏆 Top 10 des Rues (Faisables & Triées par Flux Piéton)")
+    if not df_faisable.empty:
+        cols_to_show = ['Bairro', 'Rua', 'Indice_Fluxo_Pedestres', 'Luvas_Total', 'Aluguel_Mensal_Total', 'Score_Global_Final']
+        st.dataframe(df_faisable[cols_to_show].head(10).style.format({
+            'Indice_Fluxo_Pedestres': '{:,.0f}',
+            'Luvas_Total': '{:,.0f} R$',
+            'Aluguel_Mensal_Total': '{:,.0f} R$',
+            'Score_Global_Final': '{:.1f}'
+        }), use_container_width=True)
+    else:
+        st.warning("⚠️ Aucune rue ne respecte ton budget actuel avec cette surface.")
 
 # ==========================================
 # CARTE INTERACTIVE
@@ -127,14 +129,12 @@ def interpolate(c1, c2, t):
     ]
 
 def get_color(row):
-
-    # Hors budget
+    # Hors budget -> Gris discret
     if not row["Faisable"]:
         return [110, 110, 110, 180]
 
     score = float(row["Score_Global_Final"])
-
-    ratio = (score - score_min) / (score_max - score_min)
+    ratio = (score - score_min) / (score_max - score_min) if score_max != score_min else 0.5
 
     # Palette type Excel
     red_color = [240, 150, 150]
@@ -142,24 +142,11 @@ def get_color(row):
     green_color = [0, 176, 80]
 
     if ratio <= 0.5:
-
         t = ratio * 2
-
-        return interpolate(
-            red_color,
-            yellow_color,
-            t
-        )
-
+        return interpolate(red_color, yellow_color, t)
     else:
-
         t = (ratio - 0.5) * 2
-
-        return interpolate(
-            yellow_color,
-            green_color,
-            t
-        )
+        return interpolate(yellow_color, green_color, t)
 
 df_base["color"] = df_base.apply(get_color, axis=1)
 
@@ -183,7 +170,7 @@ layer = pdk.Layer(
 )
 
 r = pdk.Deck(
-    map_style="road",
+    map_style=pdk.map_styles.CARTO_LIGHT,
     layers=[layer],
     initial_view_state=view_state,
     tooltip={
@@ -195,12 +182,11 @@ r = pdk.Deck(
             font-size:14px;
         ">
             <b>{Rua}</b><br><br>
-
             <b>Quartier :</b> {Bairro}<br>
             <b>Flux Piétons :</b> {Indice_Fluxo_Pedestres}<br>
             <b>Score Global :</b> {Score_Global_Final}<br>
-            <b>Luvas :</b> R$ {Luvas_Total}<br>
-            <b>Loyer :</b> R$ {Aluguel_Mensal_Total}
+            <b>Luvas :</b> R$ {Luvas_Total:,.0f}<br>
+            <b>Loyer :</b> R$ {Aluguel_Mensal_Total:,.0f}
         </div>
         """
     }
