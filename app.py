@@ -11,7 +11,6 @@ st.set_page_config(
 )
 
 st.title("Simulador de Seleção de Ponto Comercial - Zona Sul")
-st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographie interactive des tracés lissés.")
 
 @st.cache_data
 def load_data():
@@ -66,15 +65,28 @@ if not df_base.empty:
 
     st.markdown("---")
     
-    param_col1, param_col2 = st.columns([2, 1])
+    # Disposition en 2 colonnes : Texte descriptif à gauche, Curseurs et Apport à droite
+    col_desc, col_sliders = st.columns([1.2, 1.8])
     
-    with param_col1:
-        orçamento_luvas_disponivel = st.slider("Enveloppe Luvas Disponible (R$)", min_value=50000, max_value=500000, value=200000, step=10000, key="slider_luvas")
-        surface_cible = st.slider("Surface Cible (m²)", min_value=30, max_value=120, value=55, step=5, key="slider_surface")
+    with col_desc:
+        st.markdown(
+            "O **Simulador de Seleção de Ponto Comercial** é uma ferramenta estratégica desenvolvida para otimizar "
+            "a escolha de locais para novos restaurantes na Zona Sul do Rio de Janeiro. A plataforma cruza dados financeiros "
+            "personalizados — como o aporte disponível e os custos de implantação — com métricas de mercado fundamentais, "
+            "incluindo o índice de fluxo de pedestres, a atratividade da rua e os custos de aluguel e luvas. "
+            "Ao ajustar variáveis de investimento e metragem, o usuário visualiza instantaneamente a viabilidade econômica "
+            "de cada endereço. O sistema ranqueia automaticamente as 10 melhores ruas para o negócio e projeta esses dados "
+            "em um mapa interativo, permitindo uma tomada de decisão precisa, baseada em dados reais e adaptada ao orçamento de cada empreendedor."
+        )
         
-    with param_col2:
-        user_apport = total_fixes + orçamento_luvas_disponivel
-        st.metric(label="Apport Total Calculé (R$)", value=f"{user_apport:,.0f} R$")
+    with col_sliders:
+        sub_col1, sub_col2 = st.columns([1.2, 0.8])
+        with sub_col1:
+            orçamento_luvas_disponivel = st.slider("Enveloppe Luvas Disponible (R$)", min_value=50000, max_value=500000, value=200000, step=10000, key="slider_luvas")
+            surface_cible = st.slider("Surface Cible (m²)", min_value=30, max_value=120, value=55, step=5, key="slider_surface")
+        with sub_col2:
+            user_apport = total_fixes + orçamento_luvas_disponivel
+            st.metric(label="Apport Total Calculé (R$)", value=f"{user_apport:,.0f} R$")
         
     st.markdown("---")
 
