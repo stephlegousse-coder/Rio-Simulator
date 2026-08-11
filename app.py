@@ -96,6 +96,10 @@ if not df_base.empty:
     df_base['Aluguel_Mensal_Total'] = df_base['Aluguel_Mensal_m2_R$'] * surface_cible
     df_base['Investimento_Total'] = df_base['Luvas_Total'] + total_fixes
 
+    # Création de colonnes formatées pour le tooltip de la carte
+    df_base['Luvas_Total_Str'] = df_base['Luvas_Total'].apply(lambda x: f"{x:,.0f}".replace(",", " "))
+    df_base['Aluguel_Mensal_Total_Str'] = df_base['Aluguel_Mensal_Total'].apply(lambda x: f"{x:,.0f}".replace(",", " "))
+
     # Test de faisabilité
     df_base['Faisable'] = df_base['Luvas_Total'] <= orçamento_luvas_disponivel
 
@@ -205,8 +209,8 @@ r = pdk.Deck(
             <b>Quartier :</b> {Bairro}<br>
             <b>Flux Piétons :</b> {Indice_Fluxo_Pedestres}<br>
             <b>Score Global :</b> {Score_Global_Final}<br>
-            <b>Luvas :</b> R$ {Luvas_Total:,.0f}<br>
-            <b>Loyer :</b> R$ {Aluguel_Mensal_Total:,.0f}
+            <b>Luvas :</b> R$ {Luvas_Total_Str}<br>
+            <b>Loyer :</b> R$ {Aluguel_Mensal_Total_Str}
         </div>
         """
     }
