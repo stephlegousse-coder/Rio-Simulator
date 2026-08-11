@@ -72,11 +72,11 @@ if not df_base.empty:
         st.markdown(
             "O \"Simulador de Seleção de Ponto Comercial\" é uma ferramenta desenvolvida para identificar "
             "a escolha de locais para novos restaurantes na Zona Sul do Rio de Janeiro. "
-            "A plataforma cruza dados financeiros personalizados (o aporte disponível, os centros de custos, etc) "
+            "A plataforma cruza dados personalizados (o aporte disponível, os centros de custos, etc) "
             "com métricas de mercado fundamentais, incluindo o índice de fluxo de pedestres, a atratividade da rua "
             "e os custos de aluguel e luvas. Ao ajustar variáveis de investimento e metragem, o usuário visualiza "
             "instantaneamente a viabilidade econômica de cada endereço. O sistema ranqueia automaticamente as 10 melhores "
-            "ruas para o negócio e projeta esses dados em um mapa interativo, permitindo uma tomada de decisão precisa e rapida, "
+            "ruas para o negócio e projeta esses dados em um mapa interativo, permitindo uma tomada de decisão precisa e rápida, "
             "baseada em dados reais e adaptada ao orçamento de cada empreendedor."
         )
         
@@ -96,9 +96,15 @@ if not df_base.empty:
     df_base['Aluguel_Mensal_Total'] = df_base['Aluguel_Mensal_m2_R$'] * surface_cible
     df_base['Investimento_Total'] = df_base['Luvas_Total'] + total_fixes
 
+    # Fonction pour formater au standard monétaire brésilien (ex: 250.000,00)
+    def format_brl(val):
+        s = f"{val:,.2f}"
+        s = s.replace(",", "X").replace(".", ",").replace("X", ".")
+        return s
+
     # Création de colonnes formatées pour le tooltip de la carte
-    df_base['Luvas_Total_Str'] = df_base['Luvas_Total'].apply(lambda x: f"{x:,.0f}".replace(",", " "))
-    df_base['Aluguel_Mensal_Total_Str'] = df_base['Aluguel_Mensal_Total'].apply(lambda x: f"{x:,.0f}".replace(",", " "))
+    df_base['Luvas_Total_Str'] = df_base['Luvas_Total'].apply(format_brl)
+    df_base['Aluguel_Mensal_Total_Str'] = df_base['Aluguel_Mensal_Total'].apply(format_brl)
 
     # Test de faisabilité
     df_base['Faisable'] = df_base['Luvas_Total'] <= orçamento_luvas_disponivel
@@ -115,7 +121,7 @@ if not df_base.empty:
             'Bairro': 'Bairro',
             'Rua': 'Rua',
             'Indice_Fluxo_Pedestres': 'Fluxo de pedestres',
-            'Score_Global_Final': 'Atratividade da rua',
+            'Score_Global_Final': 'Atratividade',
             'Aluguel_Mensal_Total': 'Aluguel mensal (R$)',
             'Luvas_Total': 'Luvas (R$)',
             'Investimento_Total': 'Investimento total (R$)'
@@ -123,13 +129,13 @@ if not df_base.empty:
         
         cols_to_show = [
             'Bairro', 'Rua', 'Fluxo de pedestres', 
-            'Atratividade da rua', 'Aluguel mensal (R$)', 
+            'Atratividade', 'Aluguel mensal (R$)', 
             'Luvas (R$)', 'Investimento total (R$)'
         ]
         
         st.dataframe(df_display[cols_to_show].style.format({
             'Fluxo de pedestres': '{:,.0f}',
-            'Atratividade da rua': '{:.1f}',
+            'Atratividade': '{:.1f}',
             'Aluguel mensal (R$)': '{:,.0f} R$',
             'Luvas (R$)': '{:,.0f} R$',
             'Investimento total (R$)': '{:,.0f} R$'
@@ -206,11 +212,11 @@ r = pdk.Deck(
             font-size:14px;
         ">
             <b>{Rua}</b><br><br>
-            <b>Quartier :</b> {Bairro}<br>
-            <b>Flux Piétons :</b> {Indice_Fluxo_Pedestres}<br>
-            <b>Score Global :</b> {Score_Global_Final}<br>
-            <b>Luvas :</b> R$ {Luvas_Total_Str}<br>
-            <b>Loyer :</b> R$ {Aluguel_Mensal_Total_Str}
+            <b>Bairro:</b> {Bairro}<br>
+            <b>Fluxo de pedestres:</b> {Indice_Fluxo_Pedestres}<br>
+            <b>Atratividade:</b> {Score_Global_Final}<br>
+            <b>Luvas (R$):</b> R$ {Luvas_Total_Str}<br>
+            <b>Aluguel mensal (R$):</b> R$ {Aluguel_Mensal_Total_Str}
         </div>
         """
     }
