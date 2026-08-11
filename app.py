@@ -96,15 +96,15 @@ if not df_base.empty:
     df_base['Aluguel_Mensal_Total'] = df_base['Aluguel_Mensal_m2_R$'] * surface_cible
     df_base['Investimento_Total'] = df_base['Luvas_Total'] + total_fixes
 
-    # Fonction pour formater au standard monétaire brésilien (ex: 250.000,00)
+    # Fonction pour formater au standard monétaire brésilien (ex: R$ 250.000,00)
     def format_brl(val):
         s = f"{val:,.2f}"
         s = s.replace(",", "X").replace(".", ",").replace("X", ".")
-        return s
+        return f"R$ {s}"
 
     # Création de colonnes formatées pour le tooltip de la carte
-    df_base['Luvas_Total_Str'] = df_base['Luvas_Total'].apply(format_brl)
-    df_base['Aluguel_Mensal_Total_Str'] = df_base['Aluguel_Mensal_Total'].apply(format_brl)
+    df_base['Luvas_Total_Str'] = df_base['Luvas_Total'].apply(lambda x: f"{x:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))
+    df_base['Aluguel_Mensal_Total_Str'] = df_base['Aluguel_Mensal_Total'].apply(lambda x: f"{x:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))
 
     # Test de faisabilité
     df_base['Faisable'] = df_base['Luvas_Total'] <= orçamento_luvas_disponivel
@@ -117,14 +117,17 @@ if not df_base.empty:
     st.subheader("Ranking das 10 Melhores Ruas para Implantação")
     if not df_faisable.empty:
         df_display = df_faisable.head(10).copy()
+        
+        # Application du formatage brésilien sur les colonnes du tableau
+        df_display['Aluguel mensal (R$)'] = df_display['Aluguel_Mensal_Total'].apply(format_brl)
+        df_display['Luvas (R$)'] = df_display['Luvas_Total'].apply(format_brl)
+        df_display['Investimento total (R$)'] = df_display['Investimento_Total'].apply(format_brl)
+        
         df_display = df_display.rename(columns={
             'Bairro': 'Bairro',
             'Rua': 'Rua',
             'Indice_Fluxo_Pedestres': 'Fluxo de pedestres',
-            'Score_Global_Final': 'Atratividade',
-            'Aluguel_Mensal_Total': 'Aluguel mensal (R$)',
-            'Luvas_Total': 'Luvas (R$)',
-            'Investimento_Total': 'Investimento total (R$)'
+            'Score_Global_Final': 'Atratividade'
         })
         
         cols_to_show = [
@@ -135,10 +138,7 @@ if not df_base.empty:
         
         st.dataframe(df_display[cols_to_show].style.format({
             'Fluxo de pedestres': '{:,.0f}',
-            'Atratividade': '{:.1f}',
-            'Aluguel mensal (R$)': '{:,.0f} R$',
-            'Luvas (R$)': '{:,.0f} R$',
-            'Investimento total (R$)': '{:,.0f} R$'
+            'Atratividade': '{:.1f}'
         }), use_container_width=True)
     else:
         st.warning("⚠️ Aucune rue ne respecte ton budget actuel avec cette surface.")
