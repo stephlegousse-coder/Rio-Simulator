@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🇧🇷 Simulateur Stratégique & Foncier - Zona Sul (Rio)")
+st.title("Simulador de Seleção de Ponto Comercial - Zona Sul")
 st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographie interactive des tracés lissés.")
 
 @st.cache_data
@@ -52,7 +52,7 @@ def load_data():
 df_base = load_data()
 
 if not df_base.empty:
-    st.sidebar.header("🛠️ Postes Fixes (One-Shot)")
+    st.sidebar.header("Centros de custos (R$)")
     c_travaux = st.sidebar.number_input("Custo Obras Fixo (R$)", value=170000, step=5000, key="c_travaux")
     c_equip = st.sidebar.number_input("Custo Equipamentos (R$)", value=190763, step=5000, key="c_equip")
     c_mobilier = st.sidebar.number_input("Custo Mobiliário (R$)", value=20832, step=1000, key="c_mobilier")
@@ -63,9 +63,6 @@ if not df_base.empty:
     c_reserves = st.sidebar.number_input("Reserva de Emergência (R$)", value=93000, step=5000, key="c_reserves")
 
     total_fixes = c_travaux + c_equip + c_mobilier + c_marketing + c_admin + c_secu + c_ti + c_reserves
-
-    st.sidebar.markdown("---")
-    st.sidebar.metric(label="Total Postes Fixes", value=f"{total_fixes:,.0f} R$")
 
     st.markdown("---")
     
@@ -94,9 +91,8 @@ if not df_base.empty:
     df_faisable = df_faisable.sort_values(by=['Score_Global_Final', 'Indice_Fluxo_Pedestres'], ascending=False).reset_index(drop=True)
     df_faisable.index = df_faisable.index + 1
 
-    st.subheader("🏆 Top 10 des Rues (Faisables & Triées par Attractivité)")
+    st.subheader("Ranking das 10 Melhores Ruas para Implantação")
     if not df_faisable.empty:
-        # Préparation du renommage des colonnes pour l'affichage
         df_display = df_faisable.head(10).copy()
         df_display = df_display.rename(columns={
             'Bairro': 'Bairro',
@@ -128,7 +124,7 @@ if not df_base.empty:
 # CARTE INTERACTIVE
 # ==========================================
 
-st.subheader("🗺️ Cartographie des Rues - Tracés Réels Lissés (Zona Sul)")
+st.subheader("Mapeamento das Ruas")
 
 score_min = float(df_base["Score_Global_Final"].min())
 score_max = float(df_base["Score_Global_Final"].max())
