@@ -16,19 +16,16 @@ st.markdown("Analyse des rues de la Zona Sul avec scoring piéton et cartographi
 @st.cache_data
 def load_data():
     try:
-        # 1. Chargement de ton fichier de données principal
         df_main = pd.read_csv("database_rio.csv")
         df_main.columns = df_main.columns.str.strip()
         df_main['Rua'] = df_main['Rua'].astype(str).str.strip()
         df_main['Bairro'] = df_main['Bairro'].astype(str).str.strip()
         
-        # 2. Chargement de ton fichier de géométrie mis à jour
         df_geo = pd.read_csv("Base_Data_Geo_rio.csv")
         df_geo.columns = df_geo.columns.str.strip()
         df_geo['Rua'] = df_geo['Rua'].astype(str).str.strip()
         df_geo['Bairro'] = df_geo['Bairro'].astype(str).str.strip()
         
-        # Fonction simple pour décoder le JSON propre exporté depuis Colab
         def parse_path(val):
             if isinstance(val, str):
                 try:
@@ -42,10 +39,8 @@ def load_data():
         else:
             df_geo['path'] = [[[-43.1822, -22.9711], [-43.1830, -22.9720]]]
 
-        # 3. Fusion propre sur Rua et Bairro
         df = pd.merge(df_main, df_geo[['Rua', 'Bairro', 'path']], on=['Rua', 'Bairro'], how='left')
         
-        # Fallback de sécurité si un tracé venait à manquer
         default_path = [[-43.1905, -22.9645], [-43.1780, -22.9750]]
         df['path'] = df['path'].apply(lambda x: x if isinstance(x, list) and len(x) > 0 else default_path)
         
@@ -74,7 +69,6 @@ if not df_base.empty:
 
     st.markdown("---")
     
-    # Paramètres financiers en ligne (Curseurs Luvas & Surface + Apport total calculé)
     param_col1, param_col2 = st.columns([2, 1])
     
     with param_col1:
@@ -87,26 +81,45 @@ if not df_base.empty:
         
     st.markdown("---")
 
-    # Calcul des coûts totaux basés sur la surface
+    # Calculs financiers par rue
     df_base['Luvas_Total'] = df_base['Custo_Luvas_m2_R$'] * surface_cible
     df_base['Aluguel_Mensal_Total'] = df_base['Aluguel_Mensal_m2_R$'] * surface_cible
+    df_base['Investimento_Total'] = df_base['Luvas_Total'] + total_fixes
 
     # Test de faisabilité
     df_base['Faisable'] = df_base['Luvas_Total'] <= orçamento_luvas_disponivel
 
-    # Filtrage du Top 10 (Pleine largeur)
+    # Filtrage et Tri par Score Global décroissant (Attractivité de la rue)
     df_faisable = df_base[df_base['Faisable'] == True].copy()
-    df_faisable = df_faisable.sort_values(by=['Indice_Fluxo_Pedestres', 'Score_Global_Final'], ascending=False).reset_index(drop=True)
+    df_faisable = df_faisable.sort_values(by=['Score_Global_Final', 'Indice_Fluxo_Pedestres'], ascending=False).reset_index(drop=True)
     df_faisable.index = df_faisable.index + 1
 
-    st.subheader("🏆 Top 10 des Rues (Faisables & Triées par Flux Piéton)")
+    st.subheader("🏆 Top 10 des Rues (Faisables & Triées par Attractivité)")
     if not df_faisable.empty:
-        cols_to_show = ['Bairro', 'Rua', 'Indice_Fluxo_Pedestres', 'Luvas_Total', 'Aluguel_Mensal_Total', 'Score_Global_Final']
-        st.dataframe(df_faisable[cols_to_show].head(10).style.format({
-            'Indice_Fluxo_Pedestres': '{:,.0f}',
-            'Luvas_Total': '{:,.0f} R$',
-            'Aluguel_Mensal_Total': '{:,.0f} R$',
-            'Score_Global_Final': '{:.1f}'
+        # Préparation du renommage des colonnes pour l'affichage
+        df_display = df_faisable.head(10).copy()
+        df_display = df_display.rename(columns={
+            'Bairro': 'Bairro',
+            'Rua': 'Rua',
+            'Indice_Fluxo_Pedestres': 'Fluxo de pedestres',
+            'Score_Global_Final': 'Atratividade da rua',
+            'Aluguel_Mensal_Total': 'Aluguel mensal (R$)',
+            'Luvas_Total': 'Luvas (R$)',
+            'Investimento_Total': 'Investimento total (R$)'
+        })
+        
+        cols_to_show = [
+            'Bairro', 'Rua', 'Fluxo de pedestres', 
+            'Atratividade da rua', 'Aluguel mensal (R$)', 
+            'Luvas (R$)', 'Investimento total (R$)'
+        ]
+        
+        st.dataframe(df_display[cols_to_show].style.format({
+            'Fluxo de pedestres': '{:,.0f}',
+            'Atratividade da rua': '{:.1f}',
+            'Aluguel mensal (R$)': '{:,.0f} R$',
+            'Luvas (R$)': '{:,.0f} R$',
+            'Investimento total (R$)': '{:,.0f} R$'
         }), use_container_width=True)
     else:
         st.warning("⚠️ Aucune rue ne respecte ton budget actuel avec cette surface.")
@@ -129,14 +142,12 @@ def interpolate(c1, c2, t):
     ]
 
 def get_color(row):
-    # Hors budget -> Gris discret
     if not row["Faisable"]:
         return [110, 110, 110, 180]
 
     score = float(row["Score_Global_Final"])
     ratio = (score - score_min) / (score_max - score_min) if score_max != score_min else 0.5
 
-    # Palette type Excel
     red_color = [240, 150, 150]
     yellow_color = [255, 217, 0]
     green_color = [0, 176, 80]
