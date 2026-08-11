@@ -91,13 +91,21 @@ if not df_base.empty:
         
     st.markdown("---")
 
-    # Calculs financiers par rue
-    df_base['Luvas_Total'] = df_base['Custo_Luvas_m2_R$'] * surface_cible
-    df_base['Aluguel_Mensal_Total'] = df_base['Aluguel_Mensal_m2_R$'] * surface_cible
-    df_base['Investimento_Total'] = df_base['Luvas_Total'] + total_fixes
+# Calculs financiers par rue
+df_base['Luvas_Total'] = df_base['Custo_Luvas_m2_R$'] * surface_cible
+df_base['Aluguel_Mensal_Total'] = df_base['Aluguel_Mensal_m2_R$'] * surface_cible
+df_base['Investimento_Total'] = df_base['Luvas_Total'] + total_fixes
 
-    # Test de faisabilité
-    df_base['Faisable'] = df_base['Luvas_Total'] <= orçamento_luvas_disponivel
+# Formatage BR pour les tooltips
+def br_currency(x):
+    return f"{x:,.0f}".replace(",", ".")
+
+df_base["Luvas_FMT"] = df_base["Luvas_Total"].apply(br_currency)
+df_base["Aluguel_FMT"] = df_base["Aluguel_Mensal_Total"].apply(br_currency)
+df_base["Score_FMT"] = df_base["Score_Global_Final"].round(1)
+
+# Test de faisabilité
+df_base['Faisable'] = df_base['Luvas_Total'] <= orçamento_luvas_disponivel
 
     # Filtrage et Tri par Score Global décroissant (Attractivité de la rue)
     df_faisable = df_base[df_base['Faisable'] == True].copy()
