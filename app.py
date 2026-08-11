@@ -52,14 +52,27 @@ df_base = load_data()
 
 if not df_base.empty:
     st.sidebar.header("Centros de custos (R$)")
-    c_travaux = st.sidebar.number_input("Custo Obras Fixo (R$)", value=170000, step=5000, key="c_travaux")
-    c_equip = st.sidebar.number_input("Custo Equipamentos (R$)", value=190763, step=5000, key="c_equip")
-    c_mobilier = st.sidebar.number_input("Custo Mobiliário (R$)", value=20832, step=1000, key="c_mobilier")
-    c_marketing = st.sidebar.number_input("Custo Marketing (R$)", value=18500, step=1000, key="c_marketing")
-    c_admin = st.sidebar.number_input("Custo Administrativo (R$)", value=18000, step=1000, key="c_admin")
-    c_secu = st.sidebar.number_input("Custo Segurança (R$)", value=17000, step=1000, key="c_secu")
-    c_ti = st.sidebar.number_input("Custo TI (R$)", value=5000, step=500, key="c_ti")
-    c_reserves = st.sidebar.number_input("Reserva de Emergência (R$)", value=93000, step=5000, key="c_reserves")
+
+    def format_input_brl(val):
+        return f"{val:,.0f}".replace(",", ".")
+
+    def get_sidebar_number(label, default_val):
+        val_str = format_input_brl(default_val)
+        user_str = st.sidebar.text_input(label, value=val_str)
+        try:
+            clean_val = float(user_str.replace(".", "").replace(",", "."))
+        except:
+            clean_val = float(default_val)
+        return clean_val
+
+    c_travaux = get_sidebar_number("Custo Obras Fixo (R$)", 170000)
+    c_equip = get_sidebar_number("Custo Equipamentos (R$)", 190763)
+    c_mobilier = get_sidebar_number("Custo Mobiliário (R$)", 20832)
+    c_marketing = get_sidebar_number("Custo Marketing (R$)", 18500)
+    c_admin = get_sidebar_number("Custo Administrativo (R$)", 18000)
+    c_secu = get_sidebar_number("Custo Segurança (R$)", 17000)
+    c_ti = get_sidebar_number("Custo TI (R$)", 5000)
+    c_reserves = get_sidebar_number("Reserva de Emergência (R$)", 93000)
 
     total_fixes = c_travaux + c_equip + c_mobilier + c_marketing + c_admin + c_secu + c_ti + c_reserves
 
