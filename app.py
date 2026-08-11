@@ -65,22 +65,23 @@ if not df_base.empty:
 
     st.markdown("---")
     
-    # Disposition en 2 colonnes : Texte descriptif à gauche, Curseurs et Apport à droite
-    col_desc, col_sliders = st.columns([1.2, 1.8])
+    # Disposition avec une colonne vide au milieu pour créer un espace propre
+    col_desc, col_space, col_sliders = st.columns([1.5, 0.3, 2])
     
     with col_desc:
         st.markdown(
-            "O **Simulador de Seleção de Ponto Comercial** é uma ferramenta estratégica desenvolvida para otimizar "
-            "a escolha de locais para novos restaurantes na Zona Sul do Rio de Janeiro. A plataforma cruza dados financeiros "
-            "personalizados — como o aporte disponível e os custos de implantação — com métricas de mercado fundamentais, "
-            "incluindo o índice de fluxo de pedestres, a atratividade da rua e os custos de aluguel e luvas. "
-            "Ao ajustar variáveis de investimento e metragem, o usuário visualiza instantaneamente a viabilidade econômica "
-            "de cada endereço. O sistema ranqueia automaticamente as 10 melhores ruas para o negócio e projeta esses dados "
-            "em um mapa interativo, permitindo uma tomada de decisão precisa, baseada em dados reais e adaptada ao orçamento de cada empreendedor."
+            "O \"Simulador de Seleção de Ponto Comercial\" é uma ferramenta desenvolvida para identificar "
+            "a escolha de locais para novos restaurantes na Zona Sul do Rio de Janeiro. "
+            "A plataforma cruza dados financeiros personalizados (o aporte disponível, os centros de custos, etc) "
+            "com métricas de mercado fundamentais, incluindo o índice de fluxo de pedestres, a atratividade da rua "
+            "e os custos de aluguel e luvas. Ao ajustar variáveis de investimento e metragem, o usuário visualiza "
+            "instantaneamente a viabilidade econômica de cada endereço. O sistema ranqueia automaticamente as 10 melhores "
+            "ruas para o negócio e projeta esses dados em um mapa interativo, permitindo uma tomada de decisão precisa e rapida, "
+            "baseada em dados reais e adaptada ao orçamento de cada empreendedor."
         )
         
     with col_sliders:
-        sub_col1, sub_col2 = st.columns([1.2, 0.8])
+        sub_col1, sub_col2 = st.columns([1.3, 0.7])
         with sub_col1:
             orçamento_luvas_disponivel = st.slider("Enveloppe Luvas Disponible (R$)", min_value=50000, max_value=500000, value=200000, step=10000, key="slider_luvas")
             surface_cible = st.slider("Surface Cible (m²)", min_value=30, max_value=120, value=55, step=5, key="slider_surface")
